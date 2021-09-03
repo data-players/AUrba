@@ -1,8 +1,8 @@
 {
-  "name": "classe-dehors-middleware",
+  "name": "AUrba-middleware",
   "version": "0.1.0",
   "private": true,
-  "description": "Middleware for classe-dehors.org",
+  "description": "Middleware for AUrba.org",
   "keywords": [
     "semapps",
     "semantic"
