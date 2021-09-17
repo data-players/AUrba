@@ -48,6 +48,16 @@
     
 
 
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipAssociationProximityType -->
+
+    <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipAssociationProximityType">
+        <rdfs:subPropertyOf rdf:resource="http://virtual-assembly.org/ontologies/pair#subjectConceptProperties"/>
+        <rdfs:domain rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation"/>
+        <rdfs:range rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationProximityType"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationFrom -->
 
     <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationFrom">
