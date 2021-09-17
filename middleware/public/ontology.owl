@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://64617461.AUrba.data-players.com/public/ontology.owl#"
+     xml:base="https://64617461.AUrba.data-players.com/public/ontology.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl">
+        <owl:imports rdf:resource="http://virtual-assembly.org/ontologies/pair"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipFrom -->
+
+    <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipFrom">
+        <rdfs:subPropertyOf rdf:resource="http://virtual-assembly.org/ontologies/pair#associationProperties"/>
+        <rdfs:domain rdf:resource="http://virtual-assembly.org/ontologies/pair#Organization"/>
+        <rdfs:range rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipTo -->
+
+    <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipTo">
+        <rdfs:subPropertyOf rdf:resource="http://virtual-assembly.org/ontologies/pair#associationProperties"/>
+        <rdfs:domain rdf:resource="http://virtual-assembly.org/ontologies/pair#Organization"/>
+        <rdfs:range rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationFrom -->
+
+    <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationFrom">
+        <rdfs:subPropertyOf rdf:resource="http://virtual-assembly.org/ontologies/pair#associationProperties"/>
+        <rdfs:domain rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation"/>
+        <rdfs:range rdf:resource="http://virtual-assembly.org/ontologies/pair#Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationTo -->
+
+    <owl:ObjectProperty rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationTo">
+        <rdfs:subPropertyOf rdf:resource="http://virtual-assembly.org/ontologies/pair#associationProperties"/>
+        <rdfs:domain rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation"/>
+        <rdfs:range rdf:resource="http://virtual-assembly.org/ontologies/pair#Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation -->
+
+    <owl:Class rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation">
+        <rdfs:subClassOf rdf:resource="http://virtual-assembly.org/ontologies/pair#Association"/>
+    </owl:Class>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationKindType -->
+
+    <owl:Class rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationKindType">
+        <rdfs:subClassOf rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationType"/>
+    </owl:Class>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationProximityType -->
+
+    <owl:Class rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationProximityType">
+        <rdfs:subClassOf rdf:resource="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationType"/>
+    </owl:Class>
+    
+
+
+    <!-- https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationType -->
+
+    <owl:Class rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationType">
+        <rdfs:subClassOf rdf:resource="http://virtual-assembly.org/ontologies/pair#Type"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://virtual-assembly.org/ontologies/pair#ConceptType"/>
+            <rdf:Description rdf:about="http://virtual-assembly.org/ontologies/pair#ObjectType"/>
+            <rdf:Description rdf:about="http://virtual-assembly.org/ontologies/pair#SubjectType"/>
+            <rdf:Description rdf:about="https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationProximityType"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
