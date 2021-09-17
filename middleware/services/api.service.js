@@ -13,7 +13,12 @@ module.exports = {
               res.setHeader('Access-Control-Allow-Origin', '*');
               res.setHeader('Content-Type', 'application/ld+json; charset=utf-8');
             }
-          }),
+          })
+        ]
+      },
+      {
+        path: '/ontology.owl',
+        use: [
           ApiGatewayService.serveStatic('./public/ontology.owl', {
             setHeaders: res => {
               res.setHeader('Access-Control-Allow-Origin', '*');
