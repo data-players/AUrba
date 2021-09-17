@@ -22,7 +22,7 @@ export default {
       },
       translations: {
         fr: {
-          name: 'Organisation |||| Les organisations',
+          name: 'Proximité |||| Les proxomités',
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
