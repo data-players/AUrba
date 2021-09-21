@@ -46,7 +46,7 @@
   },
   {
     "prefix": "aurba",
-    "owl": "https://64617461.AUrba.data-players.com/public/ontology.owl",
+    "owl": "https://64617461.AUrba.data-players.com/public/ontology.ttl",
     "url": "https://64617461.AUrba.data-players.com/public/ontology.owl#"
   },
   {

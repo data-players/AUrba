@@ -22,7 +22,7 @@ module.exports = {
           ApiGatewayService.serveStatic('./public/ontology.ttl', {
             setHeaders: res => {
               res.setHeader('Access-Control-Allow-Origin', '*');
-              res.setHeader('Content-Type', 'application/n-triples; charset=utf-8');
+              res.setHeader('Content-Type', 'text/turtle; charset=utf-8');
             }
           })
         ]
