@@ -1,10 +1,16 @@
 module.exports = [
   {
     path: '/organizations',
-    acceptedTypes: ['pair:Organization']
+    acceptedTypes: ['pair:Organization'],
+    dereference: ['aurba:organizationOfRelationshipFrom'],
+    disassembly: [{ path: 'aurba:organizationOfRelationshipFrom', container:  process.env.SEMAPPS_HOME_URL + 'relationship-associations' }]
   },
   {
-    path: '/RelationShipAssociationProximities',
-    acceptedTypes: 'pair:RelationShipAssociationProximitY'
+    path: '/relationship-associations',
+    acceptedTypes: ['aurba:RelationshipAssociation'],
+  },
+  {
+    path: '/RelationshipAssociationProximities',
+    acceptedTypes: 'aurba:RelationshipAssociationProximity'
   }
 ];

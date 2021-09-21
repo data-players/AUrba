@@ -41,8 +41,13 @@
   },
   {
     "prefix": "pair",
-    "owl": "http://virtual-assembly.org/ontologies/pair-2020-winter/ontology.ttl",
+    "owl": "http://virtual-assembly.org/ontologies/pair-2021-summer/ontology.ttl",
     "url": "http://virtual-assembly.org/ontologies/pair#"
+  },
+  {
+    "prefix": "aurba",
+    "owl": "https://64617461.AUrba.data-players.com/public/ontology.owl",
+    "url": "https://64617461.AUrba.data-players.com/public/ontology.owl#"
   },
   {
     "prefix": "skos",

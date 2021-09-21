@@ -14,9 +14,27 @@
     "foaf": "http://xmlns.com/foaf/0.1/",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "semapps": "http://semapps.org/ns/core#",
+    "aurba": "https://64617461.AUrba.data-players.com/public/ontology.owl#",
 
     "id": "@id",
     "type": "@type",
+
+
+    "aurba:relationshipOrganizationFrom": {
+      "@type": "@id"
+    },
+    "aurba:relationshipOrganizationTo": {
+      "@type": "@id"
+    },
+    "aurba:organizationOfRelationshipFrom": {
+      "@type": "@id"
+    },
+    "aurba:organizationOfRelationshipTo": {
+      "@type": "@id"
+    },
+    "aurba:relationshipAssociationProximityType": {
+      "@type": "@id"
+    },
 
     "image": {
       "@id": "as:image",

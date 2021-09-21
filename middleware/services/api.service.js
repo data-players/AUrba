@@ -6,17 +6,6 @@ module.exports = {
     server: true,
     routes: [
       {
-        path: '/context.json',
-        use: [
-          ApiGatewayService.serveStatic('./public/context.json', {
-            setHeaders: res => {
-              res.setHeader('Access-Control-Allow-Origin', '*');
-              res.setHeader('Content-Type', 'application/ld+json; charset=utf-8');
-            }
-          })
-        ]
-      },
-      {
         path: '/ontology.owl',
         use: [
           ApiGatewayService.serveStatic('./public/ontology.owl', {
@@ -33,13 +22,5 @@ module.exports = {
       methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE', 'HEAD', 'OPTIONS'],
       exposedHeaders: '*'
     }
-  },
-  dependencies: ['ldp', 'sparqlEndpoint', 'mailer'],
-  async started() {
-    [
-      ...(await this.broker.call('ldp.getApiRoutes')),
-      ...(await this.broker.call('sparqlEndpoint.getApiRoutes')),
-      ...(await this.broker.call('mailer.getApiRoutes'))
-    ].forEach(route => this.addRoute(route));
   }
 };

@@ -4,18 +4,27 @@ import { SimpleForm, TextInput } from "ra-ui-materialui";
 import OrganizationTitle from './OrganizationTitle';
 import MarkdownInput from '../../markdown/MarkdownInput'
 
+import {
+  ReferenceInput,
+  SelectInput,
+  AutocompleteInput,
+} from 'react-admin';
+import {ReificationArrayInput} from '@semapps/semantic-data-provider';
+
 export const OrganizationEdit = props => (
     <Edit title={<OrganizationTitle />} {...props} >
         <SimpleForm redirect="show" >
             <TextInput source="pair:label" fullWidth />
             <MarkdownInput multiline source="pair:description" fullWidth />
-            <ReificationArrayInput source="pair:organizationOfRelationshipFrom" reificationClass="pair:RelationshipAssociation">
-              <ReferenceInput reference="Organization" source="pair:relationshipOrganizationTo">
-                <AutocompleteInput
-                  optionText={record => record && `${record['pair:label']}`}
-                />
-              </ReferenceInput>
-              <ReferenceInput label="Proximite" reference="RelationShipAssociationProximity" source="pair:relationshipAssociationProximityType">
+            <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">
+
+                <ReferenceInput label="orga" reference="Organization" source="aurba:relationshipOrganizationTo">
+                  <SelectInput optionText="pair:label" />
+                </ReferenceInput>
+
+
+
+              <ReferenceInput label="Proximite" reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
                 <SelectInput optionText="pair:label" />
               </ReferenceInput>
             </ReificationArrayInput>

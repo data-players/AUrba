@@ -18,7 +18,8 @@ export default {
     dataModel: {
         types: ['pair:Organization'],
         containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'organizations',
-        slugField: 'pair:label'
+        slugField: 'pair:label',
+        forceArray: ['pair:organizationOfRelationshipFrom']
       },
       translations: {
         fr: {
@@ -26,6 +27,8 @@ export default {
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
+            'pair:organizationOfRelationshipFrom' : 'relations',
+            'pair:relationshipOrganizationTo' : 'orga'
           }
         }
       }

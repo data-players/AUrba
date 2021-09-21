@@ -1,4 +1,3 @@
-const CONFIG = require('./config');
 
 module.exports = {
   // You can set all ServiceBroker configurations here
