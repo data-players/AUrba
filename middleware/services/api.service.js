@@ -19,7 +19,7 @@ module.exports = {
       {
         path: '/ontology.ttl',
         use: [
-          ApiGatewayService.serveStatic('./public/ontology.owl', {
+          ApiGatewayService.serveStatic('./public/ontology.ttl', {
             setHeaders: res => {
               res.setHeader('Access-Control-Allow-Origin', '*');
               res.setHeader('Content-Type', 'application/n-triples; charset=utf-8');
