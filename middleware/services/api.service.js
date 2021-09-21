@@ -15,6 +15,17 @@ module.exports = {
             }
           })
         ]
+      },
+      {
+        path: '/ontology.ttl',
+        use: [
+          ApiGatewayService.serveStatic('./public/ontology.owl', {
+            setHeaders: res => {
+              res.setHeader('Access-Control-Allow-Origin', '*');
+              res.setHeader('Content-Type', 'application/n-triples; charset=utf-8');
+            }
+          })
+        ]
       }
     ],
     cors: {
