@@ -21,6 +21,7 @@
 ###  https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipFrom
 :organizationOfRelationshipFrom rdf:type owl:ObjectProperty ;
                                 rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
+                                owl:inverseOf :relationshipOrganizationFrom ;
                                 rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
                                 rdfs:range :RelationshipAssociation .
 
@@ -28,6 +29,7 @@
 ###  https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipTo
 :organizationOfRelationshipTo rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
+                              owl:inverseOf :relationshipOrganizationTo ;
                               rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
                               rdfs:range :RelationshipAssociation .
 

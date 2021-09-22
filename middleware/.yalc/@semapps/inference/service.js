@@ -24,6 +24,7 @@ module.exports = {
     findInverseRelations(owlFile) {
       const parser = new N3.Parser({ format: 'Turtle' });
       return new Promise((resolve, reject) => {
+        console.log('FETCH ',owlFile);
         const stream = request(owlFile);
         const rel = {};
         parser.parse(stream, (err, quad) => {
