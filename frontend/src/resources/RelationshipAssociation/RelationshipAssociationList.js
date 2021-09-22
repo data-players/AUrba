@@ -1,7 +1,5 @@
 import React from 'react';
-import { SimpleList } from "@semapps/archipelago-layout";
 import { ReferenceField } from "@semapps/semantic-data-provider";
-import HomeIcon from '@material-ui/icons/Build';
 import { Avatar } from "@material-ui/core";
 import {
   ReferenceInput,

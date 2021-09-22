@@ -58,7 +58,7 @@ init :
 	make bootstrap
 
 install :
-	npm install --prefix ./server
+	yarn install --prefix ./server
 
 build:docker-build
 
@@ -66,10 +66,10 @@ build-prod: docker-build-prod
 
 prettier:
 
-	npm run prettier --prefix ./server
+	yarn run prettier --prefix ./server
 
 bootstrap:
-	npm run bootstrap --prefix ./src/server
+	yarn run bootstrap --prefix ./src/server
 
 # For tests we currently only need fuseki
 test:

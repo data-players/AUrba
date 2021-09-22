@@ -49,4 +49,4 @@ services:
       - "5000:5000"
     expose:
       - "5000"
-    command: bash -c "npm rebuild --silent && npm install --silent && npm start"
+    command: bash -c "yarn install && npm start"
