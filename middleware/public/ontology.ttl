@@ -1,4 +1,4 @@
-@prefix : <https://64617461.AUrba.data-players.com/public/ontology.owl#> .
+@prefix : <https://64617461.AUrba.data-players.com/ontology#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix ns: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,46 +9,44 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix terms: <http://purl.org/dc/terms/> .
-@base <https://64617461.AUrba.data-players.com/ontology.owl> .
+@base <https://64617461.AUrba.data-players.com/ontology> .
 
-<https://64617461.AUrba.data-players.com/ontology.owl> rdf:type owl:Ontology ;
-                                                        owl:imports <http://virtual-assembly.org/ontologies/pair> .
+<https://64617461.AUrba.data-players.com/ontology> rdf:type owl:Ontology ;
+                                                               owl:imports <http://virtual-assembly.org/ontologies/pair> .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipFrom
+###  https://64617461.AUrba.data-players.com/ontology#organizationOfRelationshipFrom
 :organizationOfRelationshipFrom rdf:type owl:ObjectProperty ;
                                 rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
-                                owl:inverseOf :relationshipOrganizationFrom ;
                                 rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
                                 rdfs:range :RelationshipAssociation .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#organizationOfRelationshipTo
+###  https://64617461.AUrba.data-players.com/ontology#organizationOfRelationshipTo
 :organizationOfRelationshipTo rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
-                              owl:inverseOf :relationshipOrganizationTo ;
                               rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
                               rdfs:range :RelationshipAssociation .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipAssociationProximityType
+###  https://64617461.AUrba.data-players.com/ontology#relationshipAssociationProximityType
 :relationshipAssociationProximityType rdf:type owl:ObjectProperty ;
                                       rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#subjectConceptProperties> ;
                                       rdfs:domain :RelationshipAssociation ;
                                       rdfs:range :RelationshipAssociationProximityType .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationFrom
+###  https://64617461.AUrba.data-players.com/ontology#relationshipOrganizationFrom
 :relationshipOrganizationFrom rdf:type owl:ObjectProperty ;
                               rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
                               rdfs:domain :RelationshipAssociation ;
                               rdfs:range <http://virtual-assembly.org/ontologies/pair#Organization> .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#relationshipOrganizationTo
+###  https://64617461.AUrba.data-players.com/ontology#relationshipOrganizationTo
 :relationshipOrganizationTo rdf:type owl:ObjectProperty ;
                             rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
                             rdfs:domain :RelationshipAssociation ;
@@ -59,22 +57,22 @@
 #    Classes
 #################################################################
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociation
+###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociation
 :RelationshipAssociation rdf:type owl:Class ;
                          rdfs:subClassOf <http://virtual-assembly.org/ontologies/pair#Association> .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationKindType
+###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociationKindType
 :RelationshipAssociationKindType rdf:type owl:Class ;
                                  rdfs:subClassOf :RelationshipAssociationType .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationProximityType
+###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociationProximityType
 :RelationshipAssociationProximityType rdf:type owl:Class ;
                                       rdfs:subClassOf :RelationshipAssociationType .
 
 
-###  https://64617461.AUrba.data-players.com/public/ontology.owl#RelationshipAssociationType
+###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociationType
 :RelationshipAssociationType rdf:type owl:Class ;
                              rdfs:subClassOf <http://virtual-assembly.org/ontologies/pair#Type> .
 
