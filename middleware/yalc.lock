@@ -2,10 +2,10 @@
   "version": "v1",
   "packages": {
     "@semapps/jsonld": {
-      "signature": "f8d65f48f6fe7ba52783d155008a78ed"
+      "signature": "62bfada4866a13f1b2cac2225804f692"
     },
     "@semapps/inference": {
-      "signature": "c5f01ee46852fcbd8bb7ac07f8811620"
+      "signature": "18356cfa5d06c8755d658fcf484211d9"
     },
     "@semapps/auth": {
       "signature": "c66b53ae47ed0ef408d0847007d7fe03"
@@ -14,7 +14,7 @@
       "signature": "3057a287b80827e39e4c276de83a84ae"
     },
     "@semapps/ldp": {
-      "signature": "f9b1a2e88132c715203eea3dcb41a429"
+      "signature": "5a1be8dda2aefa0766935656a10721d6"
     },
     "@semapps/middlewares": {
       "signature": "72f2530b9e269efbae873fa711e29e62"

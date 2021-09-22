@@ -68,7 +68,6 @@ module.exports = {
     },
     frame(ctx) {
       const { input, frame, options } = ctx.params;
-      // console.log('--------frame 3',input, frame, options);
       return this.jsonld.frame(input, frame, options);
     },
     normalize(ctx) {

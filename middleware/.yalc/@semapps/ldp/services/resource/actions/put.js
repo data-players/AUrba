@@ -52,13 +52,11 @@ module.exports = {
 
       // Save the current data, to be able to send it through the event
       // If the resource does not exist, it will throw a 404 error
-      console.log('resourceUri',resourceUri);
       let oldData = await ctx.call('ldp.resource.get', {
         resourceUri,
         accept: MIME_TYPES.JSON,
         webId
       });
-      console.log('oldData',oldData);
 
       // Adds the default context, if it is missing
       if (contentType === MIME_TYPES.JSON && !resource['@context']) {
@@ -67,42 +65,29 @@ module.exports = {
           ...resource
         };
       }
-      console.log('before disassembly',oldData);
 
       if (disassembly && contentType === MIME_TYPES.JSON) {
         await this.updateDisassembly(ctx, disassembly, resource, oldData, 'PUT');
       }
-      console.log('after disassembly');
-      console.log('oldData 2',oldData);
+
       let oldTriples = await this.bodyToTriples(oldData, MIME_TYPES.JSON);
-      console.log('after first bodyToTriples ');
       let newTriples = await this.bodyToTriples(resource, contentType);
 
-            console.log('after bodyToTriples');
-
       const blankNodesVarsMap = this.mapBlankNodesOnVars([...oldTriples, ...newTriples]);
-
-        console.log('after mapBlankNodesOnVars');
 
       // Filter out triples whose subject is not the resource itself
       // We don't want to update or delete resources with IDs
       oldTriples = this.filterOtherNamedNodes(oldTriples, resourceUri);
       newTriples = this.filterOtherNamedNodes(newTriples, resourceUri);
 
-      console.log('after filterOtherNamedNodes');
-
       oldTriples = this.convertBlankNodesToVars(oldTriples, blankNodesVarsMap);
       newTriples = this.convertBlankNodesToVars(newTriples, blankNodesVarsMap);
-
-      console.log('before  TriplesDifference');
 
       // Triples to add are reversed, so that blank nodes are linked to resource before being assigned data properties
       // Triples to remove are not reversed, because we want to remove the data properties before unlinking it from the resource
       // This is needed, otherwise we have permissions violations with the WebACL (orphan blank nodes cannot be edited, except as "system")
       const triplesToAdd = this.getTriplesDifference(newTriples, oldTriples).reverse();
       const triplesToRemove = this.getTriplesDifference(oldTriples, newTriples);
-
-      console.log('after  TriplesDifference');
 
       // The exact same data have been posted, skip
       if (triplesToAdd.length === 0 && triplesToRemove.length === 0) {
@@ -127,8 +112,6 @@ module.exports = {
       console.log('query', query);
 
       await ctx.call('triplestore.update', { query, webId });
-
-      console.log('before last get');
 
       // Get the new data, with the same formatting as the old data
       // We skip the cache because it has not been invalidated yet

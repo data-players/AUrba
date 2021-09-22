@@ -15,6 +15,7 @@ module.exports = {
     for (let ontology of this.settings.ontologies) {
       if (ontology.owl) {
         const result = await this.findInverseRelations(ontology.owl);
+        console.log('RELATIONS',result);
         console.log(`Found ${Object.keys(result).length} inverse relations in ${ontology.owl}`);
         this.inverseRelations = { ...this.inverseRelations, ...result };
       }
@@ -24,7 +25,6 @@ module.exports = {
     findInverseRelations(owlFile) {
       const parser = new N3.Parser({ format: 'Turtle' });
       return new Promise((resolve, reject) => {
-        console.log('FETCH ',owlFile);
         const stream = request(owlFile);
         const rel = {};
         parser.parse(stream, (err, quad) => {

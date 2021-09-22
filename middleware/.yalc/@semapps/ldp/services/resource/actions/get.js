@@ -75,7 +75,6 @@ module.exports = {
 
         // If we asked for JSON-LD, frame it using the correct context in order to have clean, consistent results
         if (accept === MIME_TYPES.JSON) {
-          // console.log('FRAME',result);
           result = await ctx.call('jsonld.frame', {
             input: result,
             frame: {
@@ -83,7 +82,6 @@ module.exports = {
               '@id': resourceUri
             }
           });
-          console.log('FRAME END',result);
         }
 
         if ((result['@type'] === 'semapps:File' || result.type === 'semapps:File') && !forceSemantic) {

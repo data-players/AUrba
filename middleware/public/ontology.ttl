@@ -9,10 +9,10 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix terms: <http://purl.org/dc/terms/> .
-@base <https://64617461.AUrba.data-players.com/public/ontology.owl> .
+@base <https://64617461.AUrba.data-players.com/ontology.owl> .
 
-<https://64617461.AUrba.data-players.com/public/ontology.owl> rdf:type owl:Ontology ;
-                                                               owl:imports <http://virtual-assembly.org/ontologies/pair> .
+<https://64617461.AUrba.data-players.com/ontology.owl> rdf:type owl:Ontology ;
+                                                        owl:imports <http://virtual-assembly.org/ontologies/pair> .
 
 #################################################################
 #    Object Properties

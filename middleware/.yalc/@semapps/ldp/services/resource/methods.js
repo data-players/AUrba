@@ -19,13 +19,10 @@ module.exports = {
   },
 
   async bodyToTriples(body, contentType) {
-    console.log('bodyToTriples start',body);
-    console.log('bodyToTriples start organizationOfRelationshipFrom',body['pair:organizationOfRelationshipFrom']);
     return new Promise((resolve, reject) => {
       if (contentType === 'application/ld+json' && typeof body === 'object') body = JSON.stringify(body);
       const textStream = streamifyString(body);
       let res = [];
-      console.log('rdfParser');
       rdfParser
         .parse(textStream, { contentType })
         .on('data', quad => res.push(quad))
@@ -120,7 +117,6 @@ module.exports = {
     }
   },
   async updateDisassembly(ctx, disassembly, newData, oldData, method) {
-    // const oldDataCopy= JSON.parse(json.stringify(oldData))
     for (let disassemblyConfig of disassembly) {
       let uriAdded = [],
         uriRemoved = [],
@@ -160,18 +156,18 @@ module.exports = {
         if (resourcesToRemove) {
           for (let resource of resourcesToRemove) {
             await ctx.call('ldp.resource.delete', {
-              resourceUri: resource['@id'] || resource['id'],
+              resourceUri: resource['@id'] || resource['id'] || resource,
               webId: 'system'
             });
-            uriRemoved.push({ '@id': resource['@id'] || resource['id'] , '@type': '@id' });
+            uriRemoved.push({ '@id': resource['@id'] || resource['id'] || resource, '@type': '@id' });
           }
         }
 
         if (resourcesToKeep) {
-          uriKept = resourcesToKeep.map(r => ({ '@id': r['@id'] || r.id , '@type': '@id' }));
+          uriKept = resourcesToKeep.map(r => ({ '@id': r['@id'] || r.id || r, '@type': '@id' }));
         }
       } else if (method === 'PATCH') {
-        uriKept = oldDisassemblyValue.map(r => ({ '@id': r['@id'] || r.id , '@type': '@id' }));
+        uriKept = oldDisassemblyValue.map(r => ({ '@id': r['@id'] || r.id || r, '@type': '@id' }));
       } else {
         throw new Error('Unknown method ' + method);
       }
@@ -188,7 +184,6 @@ module.exports = {
           disassemblyValue = [disassemblyValue];
         }
         for (let resource of disassemblyValue) {
-          console.log('resource',resource);
           await ctx.call('ldp.resource.delete', {
             resourceUri: resource['@id'] || resource['id'] || resource,
             webId: 'system'
