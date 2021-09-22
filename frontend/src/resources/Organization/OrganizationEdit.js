@@ -18,15 +18,13 @@ export const OrganizationEdit = props => (
             <MarkdownInput multiline source="pair:description" fullWidth />
             <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">
 
-                <ReferenceInput label="orga" reference="Organization" source="aurba:relationshipOrganizationTo">
+                <ReferenceInput reference="Organization" source="aurba:relationshipOrganizationTo">
                   <SelectInput optionText="pair:label" />
                 </ReferenceInput>
 
-
-
-              <ReferenceInput label="Proximite" reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
-                <SelectInput optionText="pair:label" />
-              </ReferenceInput>
+                <ReferenceInput reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
+                  <SelectInput optionText="pair:label" />
+                </ReferenceInput>
             </ReificationArrayInput>
         </SimpleForm>
     </Edit>

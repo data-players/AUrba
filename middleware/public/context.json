@@ -35,6 +35,9 @@
     "aurba:relationshipAssociationProximityType": {
       "@type": "@id"
     },
+    "aurba:relationshipAssociationProximityKind": {
+      "@type": "@id"
+    },
 
     "image": {
       "@id": "as:image",

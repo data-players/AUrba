@@ -2,7 +2,7 @@ import OrganizationCreate from './OrganizationCreate';
 import OrganizationEdit from './OrganizationEdit';
 import OrganizationList from './OrganizationList';
 import OrganizationShow from './OrganizationShow';
-import HomeIcon from '@material-ui/icons/Build';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 export default {
     config: {
@@ -10,7 +10,7 @@ export default {
         show: OrganizationShow,
         create: OrganizationCreate,
         edit: OrganizationEdit,
-        icon: HomeIcon,
+        icon: AccountBalanceIcon,
         options: {
           label: 'Organization'
         },
@@ -27,8 +27,10 @@ export default {
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
-            'pair:organizationOfRelationshipFrom' : 'relations',
-            'pair:relationshipOrganizationTo' : 'orga'
+            'aurba:organizationOfRelationshipFrom' : 'relations',
+            'aurba:relationshipOrganizationTo' : 'vers',
+            'aurba:relationshipAssociationKindType' : 'nature',
+            'aurba:relationshipAssociationProximityType' : 'proximite'
           }
         }
       }

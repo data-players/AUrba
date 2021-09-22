@@ -2,7 +2,7 @@ import RelationshipAssociationCreate from './RelationshipAssociationCreate';
 import RelationshipAssociationEdit from './RelationshipAssociationEdit';
 import RelationshipAssociationList from './RelationshipAssociationList';
 import RelationshipAssociationShow from './RelationshipAssociationShow';
-import HomeIcon from '@material-ui/icons/Build';
+import SyncAltIcon from '@material-ui/icons/SyncAlt';
 
 export default {
     config: {
@@ -10,7 +10,7 @@ export default {
         show: RelationshipAssociationShow,
         create: RelationshipAssociationCreate,
         edit: RelationshipAssociationEdit,
-        icon: HomeIcon,
+        icon: SyncAltIcon,
         options: {
           label: 'RelationshipAssociation'
         },
@@ -27,8 +27,10 @@ export default {
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
-            'aurba:RelationshipAssociationOfRelationshipFrom' : 'relations',
-            'aurba:relationshipRelationshipAssociationTo' : 'orga'
+            'aurba:relationshipOrganizationFrom' : 'depuis',
+            'aurba:relationshipOrganizationTo' : 'vers',
+            'aurba:relationshipAssociationKindType' : 'nature',
+            'aurba:relationshipAssociationProximityType' : 'proximite'
           }
         }
       }

@@ -3,10 +3,10 @@ import { List, SimpleList } from "@semapps/archipelago-layout";
 import HomeIcon from '@material-ui/icons/Build';
 import { Avatar } from "@material-ui/core";
 
-const OrganizationList = props => (
+const RelationshipAssociationKindList = props => (
     <List  {...props}>
-        <SimpleList primaryText={record => record['pair:label']} linkType="show" />
+        <SimpleList primaryText={record => record['pair:label']} linkType="edit" />
     </List>
 )
 
-export default OrganizationList;
+export default RelationshipAssociationKindList;
