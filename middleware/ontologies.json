@@ -46,8 +46,8 @@
   },
   {
     "prefix": "aurba",
-    "owl": "https://64617461.AUrba.data-players.com/ontology.ttl",
-    "url": "https://64617461.AUrba.data-players.com/ontology.owl#"
+    "owl": "https://64617461.AUrba.data-players.com/ontology",
+    "url": "https://64617461.AUrba.data-players.com/ontology#"
   },
   {
     "prefix": "skos",
