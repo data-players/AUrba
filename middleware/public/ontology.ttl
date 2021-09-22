@@ -1,4 +1,4 @@
-@prefix : <https://64617461.AUrba.data-players.com/public/ontology.owl#> .
+@prefix : <https://64617461.AUrba.data-players.com/ontology#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix ns: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
