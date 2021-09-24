@@ -3,6 +3,7 @@ import { Edit } from "@semapps/archipelago-layout";
 import { SimpleForm } from "ra-ui-materialui";
 import RelationshipAssociationTitle from './RelationshipAssociationTitle';
 import MarkdownInput from '../../markdown/MarkdownInput'
+import MarkdownField from "../../markdown/MarkdownField";
 import {
   ReferenceInput,
   SelectInput,
@@ -13,11 +14,12 @@ import {ReificationArrayInput} from '@semapps/semantic-data-provider';
 export const RelationshipAssociationEdit = props => (
     <Edit title={<RelationshipAssociationTitle />} {...props} >
         <SimpleForm redirect="show" >
+
           <ReferenceInput reference="Organization" source="aurba:relationshipOrganizationFrom">
-            <SelectInput optionText="pair:label" />
+            <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
           </ReferenceInput>
           <ReferenceInput  reference="Organization" source="aurba:relationshipOrganizationTo">
-            <SelectInput optionText="pair:label" />
+            <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
           </ReferenceInput>
           <ReferenceInput  reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
             <SelectInput optionText="pair:label" />

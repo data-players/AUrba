@@ -1,15 +1,15 @@
 import React from 'react';
-import {   ReferenceInput, SelectInput,SimpleForm, TextInput } from 'react-admin';
+import {   ReferenceInput, SelectInput,SimpleForm, TextInput,AutocompleteInput } from 'react-admin';
 import { Create } from '@semapps/archipelago-layout';
 
 const RelationshipAssociationCreate = props => (
   <Create {...props}>
     <SimpleForm redirect="show" >
       <ReferenceInput reference="Organization" source="aurba:relationshipOrganizationFrom">
-        <SelectInput optionText="pair:label" />
+        <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
       </ReferenceInput>
       <ReferenceInput  reference="Organization" source="aurba:relationshipOrganizationTo">
-        <SelectInput optionText="pair:label" />
+        <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
       </ReferenceInput>
       <ReferenceInput reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
         <SelectInput optionText="pair:label" />
