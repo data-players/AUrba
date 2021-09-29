@@ -5,7 +5,7 @@ import {
   List
 } from 'react-admin';
 const filters = [
-    <TextInput label="Search" source="q" alwaysOn />,
+    <TextInput label="Rechercher" source="q" alwaysOn />,
 ];
 const OrganizationList = props => (
     <List  {...props} filters={filters}>
