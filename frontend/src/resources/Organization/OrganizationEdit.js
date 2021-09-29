@@ -2,9 +2,7 @@ import React from 'react';
 import { Edit, Column, ColumnShowLayout } from "@semapps/archipelago-layout";
 import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
 import OrganizationTitle from './OrganizationTitle';
-import MarkdownInput from '../../markdown/MarkdownInput'
-import MarkdownField from "../../markdown/MarkdownField";
-import { If, Then, Else } from 'react-if';
+import { MarkdownInput } from '@semapps/markdown-components';
 
 import {
   ReferenceInput,
@@ -19,33 +17,17 @@ export const OrganizationEdit = props => {
   const {
       record, // record fetched via dataProvider.getOne() based on the id from the location
   } = useShowController(props);
+  const lock = record?.['aurba:externalSource']!=undefined;
   return (
     <Edit title={<OrganizationTitle />} {...props} >
         <SimpleForm redirect="show" >
-            <If condition={record?.['aurba:externalSource']==undefined}>
-              <Then>
-                <TextInput source="pair:label" fullWidth />
-              </Then>
-              <Else>
-                <TextField source="pair:label" fullWidth />
-              </Else>
-            </If>
-            <If condition={record?.['aurba:externalSource']==undefined}>
-              <Then>
-                <MarkdownInput multiline source="pair:description" fullWidth />
-              </Then>
-              <Else>
-                <MarkdownField source="pair:description" record={record} />
-              </Else>
-            </If>
-            <If condition={record?.['aurba:externalSource']==undefined}>
-              <Then>
-                <TextInput source="aurba:externalUrl" fullWidth />
-              </Then>
-              <Else>
-                <UrlField source="aurba:externalUrl" target="_blank" rel="noreferrer"/>
-              </Else>
-            </If>
+
+            <TextInput source="pair:label" fullWidth disabled={lock} />
+
+            <MarkdownInput multiline source="pair:description" fullWidth readOnly={lock}/>
+
+            <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
+
             {/**
               <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">
 
