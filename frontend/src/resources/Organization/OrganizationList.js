@@ -1,10 +1,14 @@
 import React from 'react';
-import { List, SimpleList } from "@semapps/archipelago-layout";
-import HomeIcon from '@material-ui/icons/Build';
-import { Avatar } from "@material-ui/core";
-
+import { SimpleList } from "@semapps/archipelago-layout";
+import {
+  TextInput,
+  List
+} from 'react-admin';
+const filters = [
+    <TextInput label="Search" source="q" alwaysOn />,
+];
 const OrganizationList = props => (
-    <List  {...props}>
+    <List  {...props} filters={filters}>
         <SimpleList primaryText={record => record['pair:label']} linkType="show" />
     </List>
 )
