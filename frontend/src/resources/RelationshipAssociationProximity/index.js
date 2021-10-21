@@ -22,7 +22,7 @@ export default {
       },
       translations: {
         fr: {
-          name: 'Proximité |||| Les proxomités de lien',
+          name: 'Registre |||| Les registres de lien',
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',

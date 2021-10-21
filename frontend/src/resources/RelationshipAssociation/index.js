@@ -30,7 +30,7 @@ export default {
             'aurba:relationshipOrganizationFrom' : 'depuis',
             'aurba:relationshipOrganizationTo' : 'vers',
             'aurba:relationshipAssociationKindType' : 'nature',
-            'aurba:relationshipAssociationProximityType' : 'proximite'
+            'aurba:relationshipAssociationProximityType' : 'registre'
           }
         }
       }
