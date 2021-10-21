@@ -1,7 +1,7 @@
 import React from 'react';
 import { Show, Column, ColumnShowLayout} from "@semapps/archipelago-layout";
 import { ReferenceArrayField} from "@semapps/semantic-data-provider";
-import OrganizationTitle from "./OrganizationTitle";
+import GroupTitle from "./GroupTitle";
 import MarkdownField from "../../markdown/MarkdownField";
 import {Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -10,26 +10,28 @@ import {
   UrlField,
   ReferenceField,
   TextField,
-  ChipField,
-  SingleFieldList
+  SingleFieldList,
+  ChipField
 } from 'react-admin';
 
-const OrganizationShow = props => {
+const GroupShow = props => {
   const {
       record, // record fetched via dataProvider.getOne() based on the id from the location
   } = useShowController(props);
   return (
-    <Show title={<OrganizationTitle />} {...props}>
+    <Show title={<GroupTitle />} {...props}>
       <ColumnShowLayout>
         <Column xs={12} sm={12} showLabel>
           <MarkdownField source="pair:description" />
-          <UrlField source="aurba:externalUrl" target="_blank" rel="noreferrer"/>
-          <ReferenceArrayField reference="Branch" source="pair:hasBranch" label="thématiques">
+          <ReferenceField reference="Group" source="pair:partOf" linkType="show" label="groupe">
+              <TextField source="pair:label" />
+          </ReferenceField>
+          <ReferenceArrayField reference="Agent" source="pair:hasPart" label="composition">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>
           </ReferenceArrayField>
-          <ReferenceField reference="Group" source="pair:partOf" linkType="show">
+          <ReferenceField reference="GroupType" source="pair:hasConceptType" linkType="show" label="type de groupe">
               <TextField source="pair:label" />
           </ReferenceField>
           <Button component={Link} variant="outlined" to={{
@@ -46,4 +48,4 @@ const OrganizationShow = props => {
   );
 };
 
-export default OrganizationShow;
+export default GroupShow;

@@ -14,10 +14,10 @@ import {
 
 
 const relationFilters = [
-  <ReferenceInput reference="Organization" source="aurba:relationshipOrganizationFrom" alwaysOn>
+  <ReferenceInput reference="Agent" source="aurba:relationshipOrganizationFrom" alwaysOn>
     <SelectInput optionText="pair:label" />
   </ReferenceInput>,
-  <ReferenceInput  reference="Organization" source="aurba:relationshipOrganizationTo" alwaysOn>
+  <ReferenceInput  reference="Agent" source="aurba:relationshipOrganizationTo" alwaysOn>
     <SelectInput optionText="pair:label" />
   </ReferenceInput>,
 ];
@@ -25,10 +25,10 @@ const relationFilters = [
 const RelationshipAssociationList = props => (
     <List  {...props} filters={relationFilters}>
         <Datagrid>
-            <ReferenceField  reference="Organization" source="aurba:relationshipOrganizationFrom" linkType="show">
+            <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationFrom" linkType="show">
               <TextField source="pair:label" />
             </ReferenceField>
-            <ReferenceField  reference="Organization" source="aurba:relationshipOrganizationTo" linkType="show">
+            <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationTo" linkType="show">
               <TextField source="pair:label" />
             </ReferenceField>
             <ReferenceField reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">

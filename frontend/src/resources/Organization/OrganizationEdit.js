@@ -1,5 +1,6 @@
 import React from 'react';
 import { Edit, Column, ColumnShowLayout } from "@semapps/archipelago-layout";
+import { ReferenceArrayInput } from '@semapps/semantic-data-provider';
 import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
 import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
@@ -9,7 +10,8 @@ import {
   SelectInput,
   AutocompleteInput,
   useShowController,
-  TextField
+  TextField,
+  AutocompleteArrayInput
 } from 'react-admin';
 import {ReificationArrayInput} from '@semapps/semantic-data-provider';
 
@@ -27,6 +29,12 @@ export const OrganizationEdit = props => {
             <MarkdownInput multiline source="pair:description" fullWidth readOnly={lock}/>
 
             <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
+            <ReferenceArrayInput reference="Branch" source="pair:hasBranch">
+              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} />
+            </ReferenceArrayInput>
+            <ReferenceInput reference="Group" source="pair:partOf">
+              <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
+            </ReferenceInput>
 
             {/**
               <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">

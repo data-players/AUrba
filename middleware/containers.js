@@ -6,6 +6,10 @@ module.exports = [
     disassembly: [{ path: 'aurba:organizationOfRelationshipFrom', container:  process.env.SEMAPPS_HOME_URL + 'relationship-associations' }]
   },
   {
+    path: '/groups',
+    acceptedTypes: ['pair:Group'],
+  },
+  {
     path: '/relationship-associations',
     acceptedTypes: ['aurba:RelationshipAssociation'],
   },

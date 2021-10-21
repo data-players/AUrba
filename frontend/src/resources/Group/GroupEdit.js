@@ -1,0 +1,42 @@
+import React from 'react';
+import { Edit, Column, ColumnShowLayout } from "@semapps/archipelago-layout";
+import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
+import GroupTitle from './GroupTitle';
+import { MarkdownInput } from '@semapps/markdown-components';
+
+import {
+  ReferenceInput,
+  SelectInput,
+  AutocompleteInput,
+  useShowController,
+  TextField
+} from 'react-admin';
+import {ReificationArrayInput} from '@semapps/semantic-data-provider';
+
+export const GroupEdit = props => {
+  const {
+      record, // record fetched via dataProvider.getOne() based on the id from the location
+  } = useShowController(props);
+  const lock = record?.['aurba:externalSource']!=undefined;
+  return (
+    <Edit title={<GroupTitle />} {...props} >
+        <SimpleForm redirect="show" >
+
+            <TextInput source="pair:label" fullWidth disabled={lock} />
+
+            <MarkdownInput multiline source="pair:description" fullWidth readOnly={lock}/>
+            <ReferenceInput reference="GroupType" source="pair:hasConceptType">
+              <SelectInput optionText="pair:label"/>
+            </ReferenceInput>
+
+            <ReferenceInput reference="Group" source="pair:partOf">
+              <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
+            </ReferenceInput>
+
+
+        </SimpleForm>
+    </Edit>
+  )
+}
+
+export default GroupEdit;

@@ -15,10 +15,10 @@ export const RelationshipAssociationEdit = props => (
     <Edit title={<RelationshipAssociationTitle />} {...props} >
         <SimpleForm redirect="show" >
 
-          <ReferenceInput reference="Organization" source="aurba:relationshipOrganizationFrom">
+          <ReferenceInput reference="Agent" source="aurba:relationshipOrganizationFrom">
             <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
           </ReferenceInput>
-          <ReferenceInput  reference="Organization" source="aurba:relationshipOrganizationTo">
+          <ReferenceInput  reference="Agent" source="aurba:relationshipOrganizationTo">
             <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
           </ReferenceInput>
           <ReferenceInput  reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">

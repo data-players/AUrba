@@ -2,7 +2,7 @@ import RelationshipAssociationKindCreate from './RelationshipAssociationKindCrea
 import RelationshipAssociationKindEdit from './RelationshipAssociationKindEdit';
 import RelationshipAssociationKindList from './RelationshipAssociationKindList';
 import RelationshipAssociationKindShow from './RelationshipAssociationKindShow';
-import HomeIcon from '@material-ui/icons/Build';
+import BuildIcon from '@material-ui/icons/Build';
 
 export default {
     config: {
@@ -10,7 +10,7 @@ export default {
         show: RelationshipAssociationKindShow,
         create: RelationshipAssociationKindCreate,
         edit: RelationshipAssociationKindEdit,
-        icon: HomeIcon,
+        icon: BuildIcon,
         options: {
           label: 'RelationshipAssociationKind'
         },
