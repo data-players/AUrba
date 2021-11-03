@@ -1,12 +1,11 @@
 import React from 'react';
 import { Edit, Column, ColumnShowLayout } from "@semapps/archipelago-layout";
-import { ReferenceArrayInput } from '@semapps/semantic-data-provider';
+import { ReferenceArrayInput,ReferenceInput} from '@semapps/semantic-data-provider';
 import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
 import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
 
 import {
-  ReferenceInput,
   SelectInput,
   AutocompleteInput,
   useShowController,

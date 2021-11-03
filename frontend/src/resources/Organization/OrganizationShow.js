@@ -1,6 +1,6 @@
 import React from 'react';
 import { Show, Column, ColumnShowLayout} from "@semapps/archipelago-layout";
-import { ReferenceArrayField} from "@semapps/semantic-data-provider";
+import { ReferenceArrayField,ReferenceField} from "@semapps/semantic-data-provider";
 import OrganizationTitle from "./OrganizationTitle";
 import MarkdownField from "../../markdown/MarkdownField";
 import {Button } from '@material-ui/core';
@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import {
   useShowController,
   UrlField,
-  ReferenceField,
   TextField,
   ChipField,
   SingleFieldList
