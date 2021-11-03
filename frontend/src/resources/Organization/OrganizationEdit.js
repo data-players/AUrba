@@ -12,7 +12,6 @@ import {
   TextField,
   AutocompleteArrayInput
 } from 'react-admin';
-import {ReificationArrayInput} from '@semapps/semantic-data-provider';
 
 export const OrganizationEdit = props => {
   const {
