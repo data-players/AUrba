@@ -1,15 +1,30 @@
 import React from 'react';
-import { SimpleList } from "@semapps/archipelago-layout";
+import { ReferenceField } from "@semapps/semantic-data-provider";
 import {
   TextInput,
-  List
+  List,
+  Datagrid,
+  ReferenceInput,
+  TextField,
+  EditButton,
+  SelectInput
 } from 'react-admin';
 const filters = [
     <TextInput label="Rechercher" source="q" alwaysOn />,
+    <ReferenceInput reference="DataSource" source="aurba:hasDataSource" alwaysOn>
+      <SelectInput optionText="pair:label" />
+    </ReferenceInput>
 ];
 const OrganizationList = props => (
     <List  {...props} filters={filters}>
-        <SimpleList primaryText={record => record['pair:label']} secondaryText={record => record['pair:description']} linkType="show" />
+        <Datagrid>
+            <TextField source="pair:label" />
+            <TextField source="pair:description" />
+            <ReferenceField reference="DataSource" source="aurba:hasDataSource">
+              <TextField source="pair:label" />
+            </ReferenceField>
+            <EditButton />
+        </Datagrid>
     </List>
 )
 

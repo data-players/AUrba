@@ -32,6 +32,9 @@ const OrganizationShow = props => {
           <ReferenceField reference="Group" source="pair:partOf" linkType="show">
               <TextField source="pair:label" />
           </ReferenceField>
+          <ReferenceField reference="DataSource" source="aurba:hasDataSource" linkType="show">
+              <TextField source="pair:label" />
+          </ReferenceField>
           <Button component={Link} variant="outlined" to={{
               pathname: `../../RelationshipAssociation`,
               search: `filter=${JSON.stringify({ 'aurba:relationshipOrganizationFrom': record?.id})}`,

@@ -35,6 +35,9 @@ export const OrganizationEdit = props => {
             <ReferenceInput reference="Group" source="pair:partOf">
               <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
             </ReferenceInput>
+            <ReferenceInput reference="DataSource" source="aurba:hasDataSource">
+              <SelectInput optionText="pair:label" />
+            </ReferenceInput>
 
             {/**
               <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">

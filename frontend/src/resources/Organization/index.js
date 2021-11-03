@@ -33,7 +33,8 @@ export default {
             'aurba:relationshipAssociationProximityType' : 'proximite',
             'aurba:externalUrl' : 'url externe',
             'pair:hasBranch' : 'thématiques',
-            'pair:partOf' : 'groupe'
+            'pair:partOf' : 'groupe',
+            'aurba:hasDataSource' : 'source de données'
           }
         }
       }
