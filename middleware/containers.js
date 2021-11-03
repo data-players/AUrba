@@ -16,5 +16,17 @@ module.exports = [
   {
     path: '/RelationshipAssociationProximities',
     acceptedTypes: 'aurba:RelationshipAssociationProximity'
+  },
+  {
+    path: '/RelationshipAssociationKinds',
+    acceptedTypes: 'aurba:RelationshipAssociationKind'
+  },
+  {
+    path: '/branches',
+    acceptedTypes: ['pair:branches'],
+  },
+  {
+    path: '/groupe-types',
+    acceptedTypes: ['pair:GroupType'],
   }
 ];

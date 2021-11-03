@@ -16,8 +16,8 @@ export default {
         },
     },
     dataModel: {
-        types: ['aurba:GroupType'],
-        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'relationship-associations',
+        types: ['pair:GroupType'],
+        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'groupe-types',
         slugField: 'pair:label',
         dereference: ['aurba:relationshipOrganizationFrom','aurba:relationshipOrganizationTo','aurba:GroupTypeProximityType'],
       },

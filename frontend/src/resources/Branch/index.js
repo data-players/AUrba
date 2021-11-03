@@ -16,10 +16,9 @@ export default {
         },
     },
     dataModel: {
-        types: ['aurba:Branch'],
-        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'relationship-associations',
-        slugField: 'pair:label',
-        dereference: ['aurba:relationshipOrganizationFrom','aurba:relationshipOrganizationTo','aurba:BranchProximityType'],
+        types: ['pair:Branch'],
+        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'branches',
+        slugField: 'pair:label'
       },
       translations: {
         fr: {

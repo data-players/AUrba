@@ -17,7 +17,7 @@ export default {
     },
     dataModel: {
         types: ['aurba:RelationshipAssociationKind'],
-        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'RelationshipAssociationProximities',
+        containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'RelationshipAssociationKinds',
         slugField: 'pair:label',
       },
       translations: {
