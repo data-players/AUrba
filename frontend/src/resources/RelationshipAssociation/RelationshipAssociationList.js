@@ -9,7 +9,8 @@ import {
   Datagrid,
   TextInput,
   List,
-  EditButton
+  EditButton,
+  ShowButton
 } from 'react-admin';
 
 
@@ -37,7 +38,7 @@ const RelationshipAssociationList = props => (
             <ReferenceField reference="RelationshipAssociationKind" source="aurba:relationshipAssociationKindType">
               <TextField source="pair:label" />
             </ReferenceField>
-            <EditButton />
+            <ShowButton />
         </Datagrid>
     </List>
 )

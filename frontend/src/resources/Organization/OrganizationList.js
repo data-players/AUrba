@@ -7,7 +7,8 @@ import {
   ReferenceInput,
   TextField,
   EditButton,
-  SelectInput
+  SelectInput,
+  ShowButton
 } from 'react-admin';
 const filters = [
     <TextInput label="Rechercher" source="q" alwaysOn />,
@@ -23,7 +24,7 @@ const OrganizationList = props => (
             <ReferenceField reference="DataSource" source="aurba:hasDataSource">
               <TextField source="pair:label" />
             </ReferenceField>
-            <EditButton />
+            <ShowButton />
         </Datagrid>
     </List>
 )
