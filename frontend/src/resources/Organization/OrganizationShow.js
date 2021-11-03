@@ -24,7 +24,7 @@ const OrganizationShow = props => {
         <Column xs={12} sm={12} showLabel>
           <MarkdownField source="pair:description" />
           <UrlField source="aurba:externalUrl" target="_blank" rel="noreferrer"/>
-          <ReferenceArrayField reference="Branch" source="pair:hasBranch" label="thématiques">
+          <ReferenceArrayField reference="Branch" source="pair:hasBranch">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>

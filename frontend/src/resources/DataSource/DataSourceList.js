@@ -13,10 +13,10 @@ import {
   SimpleList
 } from 'react-admin';
 
-const BranchList = props => (
+const DataSourceList = props => (
   <List  {...props}>
       <SimpleList primaryText={record => record['pair:label']} linkType="show" />
   </List>
 )
 
-export default BranchList;
+export default DataSourceList;

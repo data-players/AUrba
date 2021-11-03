@@ -18,6 +18,21 @@
 #    Object Properties
 #################################################################
 
+###  https://64617461.AUrba.data-players.com/ontology#dataSourceOf
+:dataSourceOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#interSubjectProperty> ;
+              owl:inverseOf :hasDataSource ;
+              rdfs:domain :DataSource ;
+              rdfs:range <http://virtual-assembly.org/ontologies/pair#PairEntity> .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#hasDataSource
+:hasDataSource rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#interSubjectProperty> ;
+               rdfs:domain <http://virtual-assembly.org/ontologies/pair#PairEntity> ;
+               rdfs:range :DataSource .
+
+
 ###  https://64617461.AUrba.data-players.com/ontology#organizationOfRelationshipFrom
 :organizationOfRelationshipFrom rdf:type owl:ObjectProperty ;
                                 rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
@@ -58,6 +73,11 @@
 #################################################################
 #    Classes
 #################################################################
+
+###  https://64617461.AUrba.data-players.com/ontology#DataSource
+:DataSource rdf:type owl:Class ;
+            rdfs:subClassOf <http://virtual-assembly.org/ontologies/pair#Resource> .
+
 
 ###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociation
 :RelationshipAssociation rdf:type owl:Class ;

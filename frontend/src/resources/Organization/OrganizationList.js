@@ -9,7 +9,7 @@ const filters = [
 ];
 const OrganizationList = props => (
     <List  {...props} filters={filters}>
-        <SimpleList primaryText={record => record['pair:label']} linkType="show" />
+        <SimpleList primaryText={record => record['pair:label']} secondaryText={record => record['pair:description']} linkType="show" />
     </List>
 )
 

@@ -28,5 +28,9 @@ module.exports = [
   {
     path: '/groupe-types',
     acceptedTypes: ['pair:GroupType'],
+  },
+  {
+    path: '/data-sources',
+    acceptedTypes: ['aurba:DataSource'],
   }
 ];

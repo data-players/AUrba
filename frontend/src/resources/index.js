@@ -6,3 +6,4 @@ export { default as Branch } from "./Branch";
 export { default as RelationshipAssociationProximity } from "./RelationshipAssociationProximity";
 export { default as RelationshipAssociationKind } from "./RelationshipAssociationKind";
 export { default as GroupType } from "./GroupType";
+export { default as DataSource } from "./DataSource";

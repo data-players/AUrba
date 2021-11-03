@@ -15,7 +15,7 @@ import {
 
 const GroupTypeList = props => (
   <List  {...props}>
-      <SimpleList primaryText={record => record['pair:label']} linkType="edit" />
+      <SimpleList primaryText={record => record['pair:label']} linkType="show" />
   </List>
 )
 

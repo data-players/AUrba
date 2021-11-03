@@ -9,7 +9,10 @@ import {
 
 const BranchShow = props => (
   <Show title={<BranchTitle />} {...props}>
+    <MainList>
+      <TextField source="pair:label"></TextField>
       <MarkdownField source="pair:description" />
+    </MainList>
   </Show>
 );
 
