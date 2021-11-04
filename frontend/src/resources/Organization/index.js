@@ -34,7 +34,9 @@ export default {
             'aurba:externalUrl' : 'url externe',
             'pair:hasBranch' : 'thématiques',
             'pair:partOf' : 'groupe',
-            'aurba:hasDataSource' : 'source de données'
+            'aurba:hasDataSource' : 'source de données',
+            'pair:hasLocation.pair:longitude' :'longitude',
+            'pair:hasLocation.pair:latitude' :'latitude'
           }
         }
       }
