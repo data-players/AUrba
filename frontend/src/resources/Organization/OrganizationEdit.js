@@ -34,7 +34,7 @@ export const OrganizationEdit = props => {
               <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
             </ReferenceInput>
             <ReferenceInput reference="DataSource" source="aurba:hasDataSource">
-              <SelectInput optionText="pair:label" initialValue="https://64617461.AUrba.data-players.com/data-sources/a-urba"/>
+              <SelectInput optionText="pair:label"/>
             </ReferenceInput>
 
             {/**
