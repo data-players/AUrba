@@ -16,6 +16,9 @@ import {
   SelectInput,
   ShowButton
 } from 'react-admin';
+import OrganizationFilterSidebar from './OrganizationFilterSidebar';
+
+
 const filters = [
     <TextInput label="Rechercher" source="q" alwaysOn />,
     <ReferenceInput reference="DataSource" source="aurba:hasDataSource" alwaysOn>
@@ -42,13 +45,14 @@ const filters = [
 const OrganizationList = props => {
 
   return <MultiViewsList
-    filters={<filters />}
+    aside={<OrganizationFilterSidebar />}
     views={{
       list: {
         label: 'Liste',
         icon: ListIcon,
         sort: { field: 'pair:label', order: 'DESC' },
         perPage: 25,
+        filters: (<filters />),
         list: (
           <Datagrid>
               <TextField source="pair:label" />
