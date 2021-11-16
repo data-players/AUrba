@@ -6,6 +6,7 @@ import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { extractContext, LocationInput } from '@semapps/geo-components';
 import  PairLocationInput from '../../components/PairLocationInput';
+import { MapField } from '@semapps/geo-components';
 
 import {
   SelectInput,
@@ -30,14 +31,18 @@ export const OrganizationEdit = props => {
             <PairLocationInput label="Adresse" source="pair:hasLocation" fullWidth disabled={lock}/>
             <TextInput source="pair:hasLocation.pair:longitude" fullWidth disabled={true} />
             <TextInput source="pair:hasLocation.pair:latitude" fullWidth disabled={true} />
+            <TextInput source="aurba:perimeter" fullWidth/>
             <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
-            <ReferenceArrayInput reference="Branch" source="pair:hasBranch">
+            <ReferenceArrayInput reference="Branch" fullWidth source="pair:hasBranch">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
             </ReferenceArrayInput>
-            <ReferenceInput reference="Group" source="pair:partOf">
+            <ReferenceArrayInput reference="OperationalMode" fullWidth source="pair:hasOperationalModes">
+              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
+            </ReferenceArrayInput>
+            <ReferenceInput reference="Group" fullWidth source="pair:partOf">
               <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1} />
             </ReferenceInput>
-            <ReferenceInput reference="DataSource" source="aurba:hasDataSource">
+            <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource">
               <SelectInput optionText="pair:label" disabled={lock}/>
             </ReferenceInput>
 

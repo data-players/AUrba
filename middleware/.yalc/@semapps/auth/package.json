@@ -1,15 +1,15 @@
 {
   "name": "@semapps/auth",
-  "version": "0.3.13",
+  "version": "0.3.21",
   "description": "Authentification module for SemApps",
   "license": "Apache-2.0",
   "author": "Virtual Assembly",
   "dependencies": {
-    "@semapps/mime-types": "0.3.13",
+    "@semapps/mime-types": "0.3.21",
     "bcrypt": "^5.0.1",
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
-    "moleculer": "^0.14.3",
+    "moleculer": "^0.14.18",
     "moleculer-web": "^0.10.0-beta1",
     "openid-client": "^4.7.4",
     "passport": "^0.4.1",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "yalcSig": "c66b53ae47ed0ef408d0847007d7fe03"
+  "yalcSig": "112d4ecf8453401d611f339bd083be51"
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { extractContext, LocationInput } from '@semapps/geo-components';
 
+console.log('REACT_APP_MAPBOX_ACCESS_TOKEN',process.env,'allo');
 const PairLocationInput = props => (
   <LocationInput
     mapboxConfig={{

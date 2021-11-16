@@ -25,6 +25,10 @@ module.exports = [
     acceptedTypes: ['pair:branches'],
   },
   {
+    path: '/operationalModes',
+    acceptedTypes: ['aurba:OperationalMode'],
+  },
+  {
     path: '/groupe-types',
     acceptedTypes: ['pair:GroupType'],
   },

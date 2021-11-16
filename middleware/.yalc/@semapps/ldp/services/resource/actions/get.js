@@ -1,6 +1,6 @@
 const { MoleculerError } = require('moleculer').Errors;
 const { MIME_TYPES } = require('@semapps/mime-types');
-const { getPrefixRdf, getPrefixJSON, buildBlankNodesQuery, buildDereferenceQuery } = require('../../../utils');
+const { getPrefixRdf, getPrefixJSON, buildBlankNodesQuery, buildDereferenceQuery, getContainerFromUri, getSlugFromUri} = require('../../../utils');
 const fs = require('fs');
 
 module.exports = {
@@ -37,6 +37,12 @@ module.exports = {
       aclVerified: { type: 'boolean', optional: true }
     },
     cache: {
+      enabled: ctx => {
+        // Check if container URI is a file, disable cache in this case
+        const containerUri = getContainerFromUri(ctx.params.resourceUri);
+        const containerSlug = getSlugFromUri(containerUri);
+        return containerSlug === 'files';
+      },
       keys: ['resourceUri', 'accept', 'queryDepth', 'dereference', 'jsonContext', 'forceSemantic']
     },
     async handler(ctx) {
@@ -87,8 +93,11 @@ module.exports = {
         if ((result['@type'] === 'semapps:File' || result.type === 'semapps:File') && !forceSemantic) {
           try {
             // Overwrite response type set by the api action
-            // TODO put this in the API action
             ctx.meta.$responseType = result['semapps:mimeType'];
+            //Les fichiers sont immutables, on défini le cache à la valeur maximum
+            ctx.meta.$responseHeaders = {
+              'Cache-Control': 'public, max-age=31536000'
+            };
             return fs.readFileSync(result['semapps:localPath']);
           } catch (e) {
             throw new MoleculerError('File Not found', 404, 'NOT_FOUND');

@@ -16,6 +16,7 @@ const RelationshipAssociationShow = props => (
           <ReferenceField  reference="Organization" source="aurba:relationshipOrganizationTo" linkType="show">
             <TextField source="pair:label" />
           </ReferenceField>
+          <TextField source="aurba:object" fullWidth/>
           <ReferenceField reference="RelationshipAssociationProximity" source="aurba:relationshipAssociationProximityType">
             <TextField source="pair:label" />
           </ReferenceField>

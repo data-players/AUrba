@@ -19,6 +19,7 @@ export default {
         types: ['pair:Organization'],
         containerUri: process.env.REACT_APP_MIDDLEWARE_URL + 'organizations',
         slugField: 'pair:label',
+        dereference: ['pair:hasLocation/pair:hasPostalAddress'],
         forceArray: ['pair:organizationOfRelationshipFrom']
       },
       translations: {
@@ -36,7 +37,8 @@ export default {
             'pair:partOf' : 'groupe',
             'aurba:hasDataSource' : 'source de données',
             'pair:hasLocation.pair:longitude' :'longitude',
-            'pair:hasLocation.pair:latitude' :'latitude'
+            'pair:hasLocation.pair:latitude' :'latitude',
+            'aurba:perimeter' :'périmetre'
           }
         }
       }

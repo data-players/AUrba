@@ -3,6 +3,7 @@ import { Show, Column, ColumnShowLayout} from "@semapps/archipelago-layout";
 import { ReferenceArrayField,ReferenceField} from "@semapps/semantic-data-provider";
 import OrganizationTitle from "./OrganizationTitle";
 import MarkdownField from "../../markdown/MarkdownField";
+import { MapField } from '@semapps/geo-components';
 import {Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import {
@@ -23,7 +24,19 @@ const OrganizationShow = props => {
         <Column xs={12} sm={12} showLabel>
           <MarkdownField source="pair:description" />
           <UrlField source="aurba:externalUrl" target="_blank" rel="noreferrer"/>
+            <MapField
+              source="pair:hasLocation"
+              address={record => record['pair:hasLocation'] && record['pair:hasLocation']['pair:label']}
+              latitude={record => record['pair:hasLocation'] && record['pair:hasLocation']['pair:latitude']}
+              longitude={record => record['pair:hasLocation'] && record['pair:hasLocation']['pair:longitude']}
+            />
+          <TextField source="aurba:perimeter" fullWidth/>
           <ReferenceArrayField reference="Branch" source="pair:hasBranch">
+            <SingleFieldList linkType="show">
+              <ChipField source="pair:label" linkType="show"/>
+            </SingleFieldList>
+          </ReferenceArrayField>
+          <ReferenceArrayField reference="OperationalMode" source="pair:hasOperationalModes">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>

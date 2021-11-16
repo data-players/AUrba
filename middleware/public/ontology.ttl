@@ -33,6 +33,21 @@
                rdfs:range :DataSource .
 
 
+###  https://64617461.AUrba.data-players.com/ontology#hasOperationalModes
+:hasOperationalModes rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#subjectConceptProperties> ;
+                     owl:inverseOf :operationalModesOf ;
+                     rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
+                     rdfs:range :OperationalMode .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#operationalModesOf
+:operationalModesOf rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#subjectConceptProperties> ;
+                    rdfs:domain :OperationalMode ;
+                    rdfs:range <http://virtual-assembly.org/ontologies/pair#Organization> .
+
+
 ###  https://64617461.AUrba.data-players.com/ontology#organizationOfRelationshipFrom
 :organizationOfRelationshipFrom rdf:type owl:ObjectProperty ;
                                 rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#associationProperties> ;
@@ -47,6 +62,13 @@
                               owl:inverseOf :relationshipOrganizationTo ;
                               rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
                               rdfs:range :RelationshipAssociation .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#relationshipAssociationKindType
+:relationshipAssociationKindType rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#subjectConceptProperties> ;
+                                 rdfs:domain :RelationshipAssociation ;
+                                 rdfs:range :RelationshipAssociationProximityType .
 
 
 ###  https://64617461.AUrba.data-players.com/ontology#relationshipAssociationProximityType
@@ -71,12 +93,33 @@
 
 
 #################################################################
+#    Data properties
+#################################################################
+
+###  https://64617461.AUrba.data-players.com/ontology#object
+:object rdf:type owl:DatatypeProperty ;
+        rdfs:domain :RelationshipAssociation ;
+        rdfs:range xsd:string .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#perimeter
+:perimeter rdf:type owl:DatatypeProperty ;
+           rdfs:domain <http://virtual-assembly.org/ontologies/pair#Organization> ;
+           rdfs:range xsd:integer .
+
+
+#################################################################
 #    Classes
 #################################################################
 
 ###  https://64617461.AUrba.data-players.com/ontology#DataSource
 :DataSource rdf:type owl:Class ;
             rdfs:subClassOf <http://virtual-assembly.org/ontologies/pair#Resource> .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#OperationalMode
+:OperationalMode rdf:type owl:Class ;
+                 rdfs:subClassOf <http://virtual-assembly.org/ontologies/pair#ActivityField> .
 
 
 ###  https://64617461.AUrba.data-players.com/ontology#RelationshipAssociation
