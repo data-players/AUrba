@@ -6,7 +6,7 @@ import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { extractContext, LocationInput } from '@semapps/geo-components';
 import  PairLocationInput from '../../components/PairLocationInput';
-import { MapField } from '@semapps/geo-components';
+
 
 import {
   SelectInput,
@@ -37,7 +37,7 @@ export const OrganizationEdit = props => {
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
             </ReferenceArrayInput>
             <ReferenceArrayInput reference="OperationalMode" fullWidth source="pair:hasOperationalModes">
-              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
+              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1}/>
             </ReferenceArrayInput>
             <ReferenceInput reference="Group" fullWidth source="pair:partOf">
               <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1} />

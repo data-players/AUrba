@@ -67,7 +67,7 @@ const OrganizationList = props => {
       map: {
         label: 'Carte',
         icon: MapIcon,
-        perPage: 500,
+        perPage: 10000,
         pagination: false,
         list: (
           <MapList
