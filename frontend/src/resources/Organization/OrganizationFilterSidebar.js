@@ -41,6 +41,22 @@ const OrganizationFilterSidebar = () => {
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
+        <ReferenceFilter
+          label="Thématiques"
+          reference="Branch"
+          source="pair:hasBranch"
+          inverseSource="pair:branchOf"
+          sort={{ field: 'pair:label', order: 'DESC' }}
+          limit={100}
+        />
+        <ReferenceFilter
+          label="Mode d'action"
+          reference="OperationalMode"
+          source="aurba:hasOperationalModes"
+          inverseSource="aurba:operationalModesOf"
+          sort={{ field: 'pair:label', order: 'DESC' }}
+          limit={100}
+        />
       </CardContent>
     </Card>
   );

@@ -166,6 +166,9 @@
     "pair:hasBranch": {
       "@type": "@id"
     },
+    "aurba:hasOperationalModes": {
+      "@type": "@id"
+    },
     "pair:hasChallenge": {
       "@type": "@id"
     },
