@@ -36,7 +36,7 @@ export const OrganizationEdit = props => {
             <ReferenceArrayInput reference="Branch" fullWidth source="pair:hasBranch">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
             </ReferenceArrayInput>
-            <ReferenceArrayInput reference="OperationalMode" fullWidth source="pair:hasOperationalModes">
+            <ReferenceArrayInput reference="OperationalMode" fullWidth source="aurba:hasOperationalModes">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1}/>
             </ReferenceArrayInput>
             <ReferenceInput reference="Group" fullWidth source="pair:partOf">

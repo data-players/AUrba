@@ -36,7 +36,7 @@ const OrganizationShow = props => {
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>
           </ReferenceArrayField>
-          <ReferenceArrayField reference="OperationalMode" source="pair:hasOperationalModes">
+          <ReferenceArrayField reference="OperationalMode" source="aurba:hasOperationalModes">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>
