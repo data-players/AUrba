@@ -8,15 +8,19 @@ import {
   ReferenceInput,
   SelectInput,
   AutocompleteInput,
-  TextInput
+  TextInput,
+  ImageInput
 } from 'react-admin';
-import {ReificationArrayInput} from '@semapps/semantic-data-provider';
+import {ImageField} from '@semapps/semantic-data-provider';
 
 export const GroupTypeEdit = props => (
     <Edit title={<GroupTypeTitle />} {...props} >
       <SimpleForm redirect="show" >
           <TextInput source="pair:label" fullWidth />
           <MarkdownInput multiline source="pair:description" fullWidth />
+          <ImageInput source="aurba:image" label="image" accept="image/*">
+            <ImageField source="src"/>
+          </ImageInput>
       </SimpleForm>
     </Edit>
 )

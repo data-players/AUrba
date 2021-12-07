@@ -23,10 +23,10 @@ const GroupShow = props => {
       <ColumnShowLayout>
         <Column xs={12} sm={12} showLabel>
           <MarkdownField source="pair:description" />
-          <ReferenceField reference="Group" source="pair:partOf" linkType="show" label="groupe">
+          <ReferenceField reference="Group" source="pair:partOf" linkType="show">
               <TextField source="pair:label" />
           </ReferenceField>
-          <ReferenceArrayField reference="Agent" source="pair:hasPart" label="composition">
+          <ReferenceArrayField reference="Agent" source="pair:hasPart">
             <SingleFieldList linkType="show">
               <ChipField source="pair:label" linkType="show"/>
             </SingleFieldList>

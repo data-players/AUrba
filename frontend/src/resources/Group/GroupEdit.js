@@ -25,13 +25,15 @@ export const GroupEdit = props => {
             <TextInput source="pair:label" fullWidth disabled={lock} />
 
             <MarkdownInput multiline source="pair:description" fullWidth readOnly={lock}/>
-            <ReferenceInput reference="GroupType" source="pair:hasConceptType">
+            <ReferenceInput reference="GroupType" fullWidth source="pair:hasConceptType">
               <SelectInput optionText="pair:label"/>
             </ReferenceInput>
 
-            <ReferenceInput reference="Group" source="pair:partOf">
-              <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
+            <ReferenceInput reference="Group"  fullWidth source="pair:partOf">
+              <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}  allowEmpty={true} resettable={true}/>
             </ReferenceInput>
+
+            <TextInput source="urba:color" fullWidth/>
 
 
         </SimpleForm>

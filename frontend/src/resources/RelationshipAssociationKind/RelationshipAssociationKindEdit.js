@@ -9,6 +9,7 @@ export const RelationshipAssociationKindEdit = props => (
         <SimpleForm redirect="show" >
             <TextInput source="pair:label" fullWidth />
             <MarkdownInput multiline source="pair:description" fullWidth />
+            <TextInput source="urba:color" fullWidth/>
         </SimpleForm>
     </Edit>
 )

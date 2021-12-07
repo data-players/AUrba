@@ -35,5 +35,6 @@ module.exports = [
   {
     path: '/data-sources',
     acceptedTypes: ['aurba:DataSource'],
-  }
+  },
+  '/files'
 ];

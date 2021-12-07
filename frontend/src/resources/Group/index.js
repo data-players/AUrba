@@ -31,7 +31,11 @@ export default {
           'aurba:relationshipOrganizationTo' : 'vers',
           'aurba:relationshipAssociationKindType' : 'nature',
           'aurba:relationshipAssociationProximityType' : 'proximite',
-          'aurba:externalUrl' : 'url externe'
+          'aurba:externalUrl' : 'url externe',
+          'pair:hasConceptType' :'type de groupe',
+          'urba:color' : 'couleur Grezi',
+          'pair:partOf' : 'groupe',
+          'pair:hasPart' : 'composition'
         }
       }
     }
