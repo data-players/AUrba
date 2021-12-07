@@ -96,6 +96,17 @@
 #    Data properties
 #################################################################
 
+###  https://64617461.AUrba.data-players.com/ontology#color
+:color rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:range xsd:string .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#image
+:image rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty .
+
+
 ###  https://64617461.AUrba.data-players.com/ontology#object
 :object rdf:type owl:DatatypeProperty ;
         rdfs:domain :RelationshipAssociation ;
