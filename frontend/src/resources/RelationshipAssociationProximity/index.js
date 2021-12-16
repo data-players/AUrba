@@ -26,6 +26,7 @@ export default {
           fields: {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
+            'aurba:deleteEdit' : `Bloquer la suppression`
           }
         }
       }

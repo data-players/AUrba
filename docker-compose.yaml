@@ -1,15 +1,16 @@
 version: '3.5'
 services:
   fuseki:
-    image: stain/jena-fuseki:3.10.0
+    image: semapps/jena-fuseki-webacl:latest
     container_name: fuseki_aurba
     volumes:
       - ./data/fuseki:/fuseki
-      - ./data/staging:/staging
     ports:
       - "3030:3030"
     expose:
       - "3030"
+    networks:
+      - semapps
     environment:
       ADMIN_PASSWORD: "admin"
 
@@ -28,11 +29,14 @@ services:
       - SEMAPPS_JENA_PASSWORD=admin
       - SEMAPPS_HOME_URL=http://localhost:3000/
       - SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH=/app/fuseki-backups
+      - SEMAPPS_REDIS_URL=redis://redis:6379/0
     ports:
       - "3000:3000"
     expose:
       - "3000"
-    command: bash -c "yarn install && npm run dev"
+    networks:
+      - semapps
+    command: bash -c "yarn install && yarn run dev"
 
   frontend:
     build: frontend
@@ -48,4 +52,23 @@ services:
       - "5000:5000"
     expose:
       - "5000"
-    command: bash -c "yarn install && npm start"
+    networks:
+      - semapps
+    command: bash -c "yarn install && yarn start"
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    volumes:
+      - ./data/redis_data:/data
+    networks:
+      - semapps
+    command: ["redis-server", "--appendonly", "yes"]
+
+networks:
+  semapps:
+    name: semapps_network

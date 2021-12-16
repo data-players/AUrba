@@ -1,11 +1,10 @@
 version: '3.5'
 services:
   fuseki:
-    image: stain/jena-fuseki:3.10.0
+    image: semapps/jena-fuseki-webacl:latest
     container_name: fuseki_aurba
     volumes:
       - ./data/fuseki:/fuseki
-      - ./data/staging:/staging
     ports:
       - "3030:3030"
     expose:
@@ -33,7 +32,7 @@ services:
       - "3000:3000"
     expose:
       - "3000"
-    command: bash -c "yarn install && npm run devwithlink"
+    command: bash -c "yarn install && yarn run devwithlink"
 
   frontend:
     build: frontend
@@ -50,4 +49,4 @@ services:
       - "5000:5000"
     expose:
       - "5000"
-    command: bash -c "yarn install && npm run startwithlink"
+    command: bash -c "yarn install && yarn run startwithlink"

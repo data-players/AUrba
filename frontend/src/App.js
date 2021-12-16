@@ -10,9 +10,13 @@ import * as resources from './resources';
 
 import SettingsIcon from '@material-ui/icons/Settings';
 
+import HomePage from './HomePage';
+
 const MyAppBar = props => <AppBar {...props} userMenu={false} />;
 
 const MyLayout = props => <Layout {...props} appBar={MyAppBar} />;
+
+
 
 const App = () => {
 
@@ -22,6 +26,7 @@ const App = () => {
       i18nProvider={i18nProvider}
       theme={theme}
       layout={MyLayout}
+      dashboard={HomePage}
 
     >
       {Object.entries(resources).map(([key, resource]) => (

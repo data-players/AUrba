@@ -1,29 +1,37 @@
 import React from 'react';
 import { Edit, Column, ColumnShowLayout } from "@semapps/archipelago-layout";
 import { ReferenceArrayInput,ReferenceInput} from '@semapps/semantic-data-provider';
-import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
+// import { SimpleForm, TextInput ,UrlField} from "ra-ui-materialui";
+import { SimpleForm, TextInput ,UrlField,Toolbar, SaveButton} from 'react-admin';
 import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { extractContext, LocationInput } from '@semapps/geo-components';
 import  PairLocationInput from '../../components/PairLocationInput';
-
+import TooBarSaveOnly from '../../components/ToolBarSaveOnly'
 
 import {
   SelectInput,
   AutocompleteInput,
-  useShowController,
+  useEditController,
   TextField,
   AutocompleteArrayInput
 } from 'react-admin';
 
+
+const UserEditToolbar = props => (
+    <Toolbar {...props} >
+        <SaveButton />
+    </Toolbar>
+);
+
 export const OrganizationEdit = props => {
   const {
       record, // record fetched via dataProvider.getOne() based on the id from the location
-  } = useShowController(props);
+  } = useEditController(props);
   const lock = record?.['aurba:externalSource']!=undefined;
   return (
     <Edit title={<OrganizationTitle />} {...props} >
-        <SimpleForm redirect="show" >
+        <SimpleForm redirect="show" toolbar={lock?<TooBarSaveOnly/>:undefined}>
 
             <TextInput source="pair:label" fullWidth disabled={lock} />
 
@@ -34,7 +42,10 @@ export const OrganizationEdit = props => {
             <TextInput source="aurba:perimeter" fullWidth/>
             <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
             <ReferenceArrayInput reference="Branch" fullWidth source="pair:hasBranch">
-              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock}/>
+              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock} disableRemove={lock}/>
+            </ReferenceArrayInput>
+            <ReferenceArrayInput reference="Branch" fullWidth source="aurba:hasSecondaryBranch">
+              <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1}/>
             </ReferenceArrayInput>
             <ReferenceArrayInput reference="OperationalMode" fullWidth source="aurba:hasOperationalModes">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1}/>

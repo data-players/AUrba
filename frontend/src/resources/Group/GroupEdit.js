@@ -9,9 +9,10 @@ import {
   SelectInput,
   AutocompleteInput,
   useShowController,
-  TextField
+  TextField,
+  ImageInput
 } from 'react-admin';
-import {ReificationArrayInput} from '@semapps/semantic-data-provider';
+import {ReificationArrayInput,ImageField} from '@semapps/semantic-data-provider';
 
 export const GroupEdit = props => {
   const {
@@ -34,7 +35,9 @@ export const GroupEdit = props => {
             </ReferenceInput>
 
             <TextInput source="urba:color" fullWidth/>
-
+            <ImageInput source="aurba:image" label="image" accept="image/*">
+              <ImageField source="src"/>
+            </ImageInput>
 
         </SimpleForm>
     </Edit>

@@ -4,25 +4,30 @@ import { SimpleForm } from "ra-ui-materialui";
 import GroupTypeTitle from './GroupTypeTitle';
 import MarkdownInput from '../../markdown/MarkdownInput'
 import MarkdownField from "../../markdown/MarkdownField";
+import TooBarSaveOnly from '../../components/ToolBarSaveOnly'
 import {
   ReferenceInput,
   SelectInput,
   AutocompleteInput,
   TextInput,
-  ImageInput
+  BooleanInput,
+  useEditController
 } from 'react-admin';
-import {ImageField} from '@semapps/semantic-data-provider';
 
-export const GroupTypeEdit = props => (
-    <Edit title={<GroupTypeTitle />} {...props} >
-      <SimpleForm redirect="show" >
-          <TextInput source="pair:label" fullWidth />
-          <MarkdownInput multiline source="pair:description" fullWidth />
-          <ImageInput source="aurba:image" label="image" accept="image/*">
-            <ImageField source="src"/>
-          </ImageInput>
-      </SimpleForm>
-    </Edit>
-)
+export const GroupTypeEdit = props => {
+  const {
+      record, // record fetched via dataProvider.getOne() based on the id from the location
+  } = useEditController(props);
+  const lock = record?.['aurba:deleteEdit'];
+  return (
+      <Edit title={<GroupTypeTitle /> } {...props} >
+        <SimpleForm redirect="show" toolbar={lock?<TooBarSaveOnly/>:undefined} >
+            <TextInput source="pair:label" fullWidth />
+            <MarkdownInput multiline source="pair:description" fullWidth />
+            <BooleanInput source="aurba:deleteEdit" fullWidth />
+        </SimpleForm>
+      </Edit>
+  )
+}
 
 export default GroupTypeEdit;

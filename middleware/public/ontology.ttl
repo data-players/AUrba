@@ -41,6 +41,12 @@
                      rdfs:range :OperationalMode .
 
 
+###  https://64617461.AUrba.data-players.com/ontology#hasSecondaryBranch
+:hasSecondaryBranch rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#hasBranch> ;
+                    owl:inverseOf :secondaryBranchOf .
+
+
 ###  https://64617461.AUrba.data-players.com/ontology#operationalModesOf
 :operationalModesOf rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#subjectConceptProperties> ;
@@ -92,6 +98,11 @@
                             rdfs:range <http://virtual-assembly.org/ontologies/pair#Organization> .
 
 
+###  https://64617461.AUrba.data-players.com/ontology#secondaryBranchOf
+:secondaryBranchOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf <http://virtual-assembly.org/ontologies/pair#branchOf> .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -100,6 +111,12 @@
 :color rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf owl:topDataProperty ;
        rdfs:range xsd:string .
+
+
+###  https://64617461.AUrba.data-players.com/ontology#deleteLock
+:deleteLock rdf:type owl:DatatypeProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:range xsd:boolean .
 
 
 ###  https://64617461.AUrba.data-players.com/ontology#image

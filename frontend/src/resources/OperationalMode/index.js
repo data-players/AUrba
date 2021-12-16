@@ -25,6 +25,7 @@ export default {
           name: `Mode d'action |||| Les modes d'actions`,
           fields: {
             'pair:label': 'Titre',
+            'aurba:deleteEdit' : `Bloquer la suppression`
           }
         }
       }

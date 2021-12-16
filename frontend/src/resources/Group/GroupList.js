@@ -1,15 +1,20 @@
 import React from 'react';
 import { SimpleList } from "@semapps/archipelago-layout";
+import { ReferenceField } from "@semapps/semantic-data-provider";
 import {
   TextInput,
   List,
   Datagrid,
   TextField,
-  ReferenceField,
-  ShowButton
+  ShowButton,
+  ReferenceInput,
+  SelectInput
 } from 'react-admin';
 const filters = [
     <TextInput label="Rechercher" source="q" alwaysOn />,
+    <ReferenceInput  reference="GroupType" source="pair:hasConceptType" alwaysOn>
+      <SelectInput optionText="pair:label" />
+    </ReferenceInput>,
 ];
 const GroupList = props => (
     <List  {...props} filters={filters} sort={{ field: 'pair:hasConceptType', order: 'ASC' }}>

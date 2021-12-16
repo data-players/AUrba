@@ -8,3 +8,4 @@ export { default as RelationshipAssociationProximity } from "./RelationshipAssoc
 export { default as RelationshipAssociationKind } from "./RelationshipAssociationKind";
 export { default as GroupType } from "./GroupType";
 export { default as DataSource } from "./DataSource";
+export { default as Page } from "./Page";

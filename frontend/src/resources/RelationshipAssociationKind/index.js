@@ -27,6 +27,7 @@ export default {
             'pair:label': 'Titre',
             'pair:description': 'Contenu',
             'urba:color' : 'couleur Grezi',
+            'aurba:deleteEdit' : `Bloquer la suppression`
           }
         }
       }

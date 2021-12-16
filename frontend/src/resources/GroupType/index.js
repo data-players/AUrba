@@ -26,6 +26,7 @@ export default {
           name: 'Type de groupe |||| Les Types de Groupe',
           fields: {
             'pair:label': 'Titre',
+            'aurba:deleteEdit' : `Bloquer la suppression`
           }
         }
       }

@@ -36,5 +36,9 @@ module.exports = [
     path: '/data-sources',
     acceptedTypes: ['aurba:DataSource'],
   },
+  {
+    path: '/pages',
+    acceptedTypes: ['semapps:Page']
+  },
   '/files'
 ];

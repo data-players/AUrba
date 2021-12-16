@@ -34,6 +34,7 @@ export default {
             'aurba:relationshipAssociationProximityType' : 'proximite',
             'aurba:externalUrl' : 'url externe',
             'pair:hasBranch' : 'thématiques',
+            'aurba:hasSecondaryBranch' : 'thématiques complémentaires',
             'pair:partOf' : 'groupe',
             'aurba:hasDataSource' : 'source de données',
             'pair:hasLocation.pair:longitude' :'longitude',

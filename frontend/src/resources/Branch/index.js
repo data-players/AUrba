@@ -25,6 +25,7 @@ export default {
           name: 'Thématique |||| Les thématiques',
           fields: {
             'pair:label': 'Titre',
+            'aurba:deleteEdit' : `Bloquer la suppression`
           }
         }
       }
