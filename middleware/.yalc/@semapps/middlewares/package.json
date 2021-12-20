@@ -1,11 +1,11 @@
 {
   "name": "@semapps/middlewares",
-  "version": "0.3.21",
+  "version": "0.4.0-alpha.4",
   "description": "Express Middlewares for SemApps",
   "license": "Apache-2.0",
   "author": "Virtual Assembly",
   "dependencies": {
-    "@semapps/mime-types": "0.3.21",
+    "@semapps/mime-types": "0.4.0-alpha.4",
     "busboy": "^0.3.1",
     "memory-streams": "^0.1.3",
     "moleculer": "^0.14.18"
@@ -13,5 +13,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "yalcSig": "9e0b7ce6e85ab38e2d7ae644fd3e8b25"
+  "yalcSig": "221972c68f8ea140d46a3f0ee9b195bf"
 }

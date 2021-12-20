@@ -3,9 +3,11 @@ const { MIME_TYPES } = require('@semapps/mime-types');
 module.exports = {
   visibility: 'public',
   params: {
-    containerUri: { type: 'string' }
+    containerUri: { type: 'string' },
+    webId: { type: 'string', optional: true }
   },
   async handler(ctx) {
+    const webId = ctx.params.webId || ctx.meta.webId || 'anon';
     // Matches container with or without trailing slash
     const containerUri = ctx.params.containerUri.replace(/\/+$/, '');
     return await ctx.call('triplestore.query', {
@@ -17,7 +19,8 @@ module.exports = {
           FILTER(?container IN (<${containerUri}>, <${containerUri + '/'}>)) .
         }
       `,
-      accept: MIME_TYPES.JSON
+      accept: MIME_TYPES.JSON,
+      webId
     });
   }
 };

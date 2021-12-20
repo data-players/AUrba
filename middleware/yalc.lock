@@ -2,22 +2,22 @@
   "version": "v1",
   "packages": {
     "@semapps/jsonld": {
-      "signature": "0d1772e4c195d24e268d81c64a5c612a"
+      "signature": "8b9f4a78457512a77eb95814fe407f24"
     },
     "@semapps/inference": {
-      "signature": "6e81aae7ef4ab03c56afa51f8ca79a6c"
+      "signature": "4bd19bcc9b8c94c2b38db7af9966c472"
     },
     "@semapps/auth": {
-      "signature": "112d4ecf8453401d611f339bd083be51"
+      "signature": "4ada1806a11e0ffe32a057971a93c9c5"
     },
     "@semapps/webid": {
-      "signature": "57ff790976a10a8768f76dbed370af79"
+      "signature": "0e67382aef249b0a656d125847ff0aa3"
     },
     "@semapps/ldp": {
-      "signature": "d584099071f7c23f71120bd5a3e34298"
+      "signature": "df56f6018dd4df6fae7c5774dc6cd060"
     },
     "@semapps/middlewares": {
-      "signature": "9e0b7ce6e85ab38e2d7ae644fd3e8b25"
+      "signature": "221972c68f8ea140d46a3f0ee9b195bf"
     }
   }
 }

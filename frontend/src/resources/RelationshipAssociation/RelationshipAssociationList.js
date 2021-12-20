@@ -24,9 +24,9 @@ const relationFilters = [
 ];
 
 const RelationshipAssociationList = props => (
-    <List  {...props} filters={relationFilters}>
+    <List  {...props} filters={relationFilters} sort={{ field: 'aurba:relationshipOrganizationFrom', order: 'ASC' }}>
         <Datagrid>
-            <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationFrom" linkType="show">
+            <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationFrom" linkType="show" sortBy="pair:label">
               <TextField source="pair:label" />
             </ReferenceField>
             <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationTo" linkType="show">

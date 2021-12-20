@@ -1,15 +1,16 @@
 {
   "name": "@semapps/ldp",
-  "version": "0.3.21",
+  "version": "0.4.0-alpha.4",
   "description": "LDP module for SemApps",
   "license": "Apache-2.0",
   "author": "Virtual Assembly",
   "dependencies": {
-    "@semapps/middlewares": "0.3.21",
-    "@semapps/mime-types": "0.3.21",
-    "@semapps/triplestore": "0.3.21",
+    "@semapps/middlewares": "0.4.0-alpha.4",
+    "@semapps/mime-types": "0.4.0-alpha.4",
+    "@semapps/triplestore": "0.4.0-alpha.4",
     "bson": "^4.0.4",
-    "moleculer": "^0.14.18",
+    "moleculer": "^0.14.17",
+    "path-to-regexp": "^6.2.0",
     "rdf-data-model": "^1.0.0",
     "rdf-parse": "^1.7.0",
     "speakingurl": "^14.0.1",
@@ -20,5 +21,5 @@
     "access": "public"
   },
   "gitHead": "06cb2decdab424e8686a5d77cc3364fbf1912439",
-  "yalcSig": "d584099071f7c23f71120bd5a3e34298"
+  "yalcSig": "df56f6018dd4df6fae7c5774dc6cd060"
 }

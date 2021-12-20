@@ -1,3 +1,4 @@
+const urlJoin = require('url-join');
 const { MoleculerError } = require('moleculer').Errors;
 const { MIME_TYPES } = require('@semapps/mime-types');
 
@@ -7,13 +8,16 @@ module.exports = {
 
     // PUT have to stay in same container and @id can't be different
     // TODO generate an error instead of overwriting the ID
-    resource['@id'] = `${containerUri}/${id}`;
+    resource['@id'] = urlJoin(containerUri, id);
+
+    const { controlledActions } = await ctx.call('ldp.registry.getByUri', { resourceUri: resource['@id'] });
+
     if (ctx.meta.parser === 'file') {
       throw new MoleculerError(`PUT method is not supported for non-RDF resources`, 400, 'BAD_REQUEST');
     }
 
     try {
-      await ctx.call('ldp.resource.put', {
+      await ctx.call(controlledActions.put || 'ldp.resource.put', {
         resource,
         contentType: ctx.meta.headers['content-type'],
         containerUri,
@@ -46,7 +50,7 @@ module.exports = {
       const resourceUri = resource.id || resource['@id'];
 
       const { disassembly, jsonContext } = {
-        ...(await ctx.call('ldp.container.getOptions', { uri: resourceUri })),
+        ...(await ctx.call('ldp.registry.getByUri', { resourceUri })),
         ...ctx.params
       };
 
@@ -125,12 +129,16 @@ module.exports = {
         { meta: { $cache: false } }
       );
 
-      ctx.emit('ldp.resource.updated', {
-        resourceUri,
-        oldData,
-        newData,
-        webId
-      });
+      ctx.emit(
+        'ldp.resource.updated',
+        {
+          resourceUri,
+          oldData,
+          newData,
+          webId
+        },
+        { meta: { webId: null, dataset: null } }
+      );
 
       return resourceUri;
     }

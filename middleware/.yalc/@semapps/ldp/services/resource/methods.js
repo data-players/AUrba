@@ -17,18 +17,20 @@ module.exports = {
         .on('error', reject);
     });
   },
-
   async bodyToTriples(body, contentType) {
-    return new Promise((resolve, reject) => {
-      if (contentType === 'application/ld+json' && typeof body === 'object') body = JSON.stringify(body);
-      const textStream = streamifyString(body);
-      let res = [];
-      rdfParser
-        .parse(textStream, { contentType })
-        .on('data', quad => res.push(quad))
-        .on('error', error => reject(error))
-        .on('end', () => resolve(res));
-    });
+    if (contentType === MIME_TYPES.JSON) {
+      return await this.broker.call('jsonld.toQuads', { input: body });
+    } else {
+      return new Promise((resolve, reject) => {
+        const textStream = streamifyString(body);
+        let res = [];
+        rdfParser
+          .parse(textStream, { contentType })
+          .on('data', quad => res.push(quad))
+          .on('error', error => reject(error))
+          .on('end', () => resolve(res));
+      });
+    }
   },
   // Filter out triples whose subject is not the resource itself
   // We don't want to update or delete resources with IDs
@@ -101,7 +103,7 @@ module.exports = {
         const uriAdded = [];
         for (let resource of disassemblyValue) {
           let { id, ...resourceWithoutId } = resource;
-          const newResourceUri = await ctx.call('ldp.resource.post', {
+          const newResourceUri = await ctx.call('ldp.container.post', {
             containerUri: disassemblyConfig.container,
             resource: {
               '@context': newData['@context'],
@@ -139,7 +141,7 @@ module.exports = {
         for (let resource of resourcesToAdd) {
           delete resource.id;
 
-          const newResourceUri = await ctx.call('ldp.resource.post', {
+          const newResourceUri = await ctx.call('ldp.container.post', {
             containerUri: disassemblyConfig.container,
             resource: {
               '@context': newData['@context'],

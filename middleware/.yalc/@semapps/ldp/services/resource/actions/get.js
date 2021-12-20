@@ -1,16 +1,27 @@
+const fs = require('fs');
+const urlJoin = require('url-join');
 const { MoleculerError } = require('moleculer').Errors;
 const { MIME_TYPES } = require('@semapps/mime-types');
-const { getPrefixRdf, getPrefixJSON, buildBlankNodesQuery, buildDereferenceQuery, getContainerFromUri, getSlugFromUri} = require('../../../utils');
-const fs = require('fs');
+const {
+  getPrefixRdf,
+  getPrefixJSON,
+  buildBlankNodesQuery,
+  buildDereferenceQuery,
+  getContainerFromUri,
+  getSlugFromUri
+} = require('../../../utils');
 
 module.exports = {
   api: async function api(ctx) {
     const { id, containerUri } = ctx.params;
-    const resourceUri = `${containerUri}/${id}`;
-    const { accept } = { ...(await ctx.call('ldp.container.getOptions', { uri: resourceUri })), ...ctx.meta.headers };
+    const resourceUri = urlJoin(containerUri, id);
+    const { accept, controlledActions } = {
+      ...(await ctx.call('ldp.registry.getByUri', { resourceUri })),
+      ...ctx.meta.headers
+    };
     try {
       ctx.meta.$responseType = ctx.meta.$responseType || accept;
-      return await ctx.call('ldp.resource.get', {
+      return await ctx.call(controlledActions.get || 'ldp.resource.get', {
         resourceUri,
         accept
       });
@@ -41,7 +52,7 @@ module.exports = {
         // Check if container URI is a file, disable cache in this case
         const containerUri = getContainerFromUri(ctx.params.resourceUri);
         const containerSlug = getSlugFromUri(containerUri);
-        return containerSlug === 'files';
+        return containerSlug !== 'files';
       },
       keys: ['resourceUri', 'accept', 'queryDepth', 'dereference', 'jsonContext', 'forceSemantic']
     },
@@ -49,11 +60,11 @@ module.exports = {
       const { resourceUri, forceSemantic, aclVerified } = ctx.params;
       const webId = ctx.params.webId || ctx.meta.webId || 'anon';
       const { accept, queryDepth, dereference, jsonContext } = {
-        ...(await ctx.call('ldp.container.getOptions', { uri: resourceUri })),
+        ...(await ctx.call('ldp.registry.getByUri', { resourceUri })),
         ...ctx.params
       };
 
-      const resourceExist = await ctx.call('ldp.resource.exist', { resourceUri }, { meta: { webId } });
+      const resourceExist = await ctx.call('ldp.resource.exist', { resourceUri, webId });
 
       if (resourceExist) {
         const blandNodeQuery = buildBlankNodesQuery(queryDepth);
@@ -76,6 +87,8 @@ module.exports = {
           `,
           accept,
           // Increase performance by using the 'system' bypass if ACL have already been verified
+          // TODO simply set meta.webId to "system", it will be taken into account in the triplestore.query action
+          // The problem is we need to know the real webid for the permissions, but we can remember it in the WebACL middleware
           webId: aclVerified ? 'system' : webId
         });
 
@@ -94,7 +107,7 @@ module.exports = {
           try {
             // Overwrite response type set by the api action
             ctx.meta.$responseType = result['semapps:mimeType'];
-            //Les fichiers sont immutables, on défini le cache à la valeur maximum
+            // Since files are currently immutable, we set a maximum browser cache age
             ctx.meta.$responseHeaders = {
               'Cache-Control': 'public, max-age=31536000'
             };
