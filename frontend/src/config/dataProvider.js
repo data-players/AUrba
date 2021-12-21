@@ -31,8 +31,11 @@ const dataProvider = semanticDataProvider({
             'aurba:RelationshipAssociationKind': [
               '/RelationshipAssociationKinds'
             ],
-            'aurba:OperationalMode': [
+            'pair:OperationalMode': [
               '/operationalModes'
+            ],
+            'pair:Branch': [
+              '/branches'
             ],
             'pair:GroupType': [
               '/groupe-types'
