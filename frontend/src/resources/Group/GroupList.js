@@ -17,7 +17,7 @@ const filters = [
     </ReferenceInput>,
 ];
 const GroupList = props => (
-    <List  {...props} filters={filters} sort={{ field: 'pair:hasConceptType', order: 'ASC' }}>
+    <List  {...props} filters={filters} sort={{ field: 'pair:hasConceptType', order: 'ASC' }}  perPage="50">
       <Datagrid>
         <TextField source="pair:label" />
         <ReferenceField source="pair:hasConceptType" reference="GroupType" sortBy="pair:label">

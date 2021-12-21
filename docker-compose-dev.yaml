@@ -32,7 +32,7 @@ services:
       - "3000:3000"
     expose:
       - "3000"
-    command: bash -c "yarn install && yarn run devwithlink"
+    command: bash -c "yarn install && pm2-runtime 'yarn run devwithlink'"
 
   frontend:
     build: frontend

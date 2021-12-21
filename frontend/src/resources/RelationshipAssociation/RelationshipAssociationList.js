@@ -16,15 +16,15 @@ import {
 
 const relationFilters = [
   <ReferenceInput reference="Agent" source="aurba:relationshipOrganizationFrom" alwaysOn>
-    <SelectInput optionText="pair:label" />
+    <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
   </ReferenceInput>,
   <ReferenceInput  reference="Agent" source="aurba:relationshipOrganizationTo" alwaysOn>
-    <SelectInput optionText="pair:label" />
+    <AutocompleteInput optionText="pair:label" shouldRenderSuggestions={value => value && value.length > 1}/>
   </ReferenceInput>,
 ];
 
 const RelationshipAssociationList = props => (
-    <List  {...props} filters={relationFilters} sort={{ field: 'aurba:relationshipOrganizationFrom', order: 'ASC' }}>
+    <List  {...props} filters={relationFilters} sort={{ field: 'aurba:relationshipOrganizationFrom', order: 'ASC' }} perPage="50">
         <Datagrid>
             <ReferenceField  reference="Agent" source="aurba:relationshipOrganizationFrom" linkType="show" sortBy="pair:label">
               <TextField source="pair:label" />

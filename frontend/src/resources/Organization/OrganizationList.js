@@ -51,7 +51,7 @@ const OrganizationList = props => {
         label: 'Liste',
         icon: ListIcon,
         sort: { field: 'pair:label', order: 'DESC' },
-        perPage: 25,
+        perPage: 50,
         filters: (<filters />),
         list: (
           <Datagrid>

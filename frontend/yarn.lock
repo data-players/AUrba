@@ -1629,18 +1629,18 @@
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.1.0.tgz#0e81ce56b4883b4b2a3001ebe1ab298b84237204"
   integrity sha512-afmTuJrylUU/0OtqzaRkbyYFFNgCF73Bvel/sw90pvGrWIZ+vyoIJqA6eMSoA6+nb443kTmulmBtC9NerXboNg==
 
-"@semapps/activitypub-components@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/activitypub-components/-/activitypub-components-0.4.0-alpha.4.tgz#989182b88a959a7185056e3192043384cc230c92"
-  integrity sha512-SI2vxEMNTiq4SCCGC2JC0LmEs8qiUsAC3KM62BPsOPc7H/0upgnSnRAaF6emxQrB8Wm37D2+AGddVMTMMPwx/A==
+"@semapps/activitypub-components@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/activitypub-components/-/activitypub-components-0.4.0-alpha.5.tgz#3f39539238da71cd689a9b23c5efd3de4abfe72a"
+  integrity sha512-a+/bEZcU6GDdzTNlBqjDIs6bs2PAcYZuFLfjjpWzMKQegddwYh3Q7dROL2P9r6layxcpZCDFZgeZ8Z+MtmlrkA==
 
-"@semapps/archipelago-layout@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/archipelago-layout/-/archipelago-layout-0.4.0-alpha.4.tgz#bf997f46c301eed37edc73cc49e7aebb99d79ac4"
-  integrity sha512-lyaCgm8p/QAvHHLtFgeMwu8cDz7uJelj1ZnmMtMfLQ7khEQQtluGmcMofnsFJHe/eTGHKwezCxMq7QhLa9wkug==
+"@semapps/archipelago-layout@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/archipelago-layout/-/archipelago-layout-0.4.0-alpha.5.tgz#6ab605ab1130a8bede394278ad6ffcf6e5350765"
+  integrity sha512-+9Eumn9O+HO/8njKurJKqtlmShLRiwne/0pCZ11LXpfLyXk8KQw661Jz7/7s9TQ+ug9mJAjSaCvTAp6hAnqBaA==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@semapps/semantic-data-provider" "0.4.0-alpha.4"
+    "@semapps/semantic-data-provider" "0.4.0-alpha.5"
     autosuggest-highlight "^3.1.1"
     classnames "^2.2.6"
     lodash.throttle "^4.1.1"
@@ -1649,21 +1649,21 @@
     react-markdown "^4.3.1"
     react-masonry-css "^1.0.14"
 
-"@semapps/auth-provider@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/auth-provider/-/auth-provider-0.4.0-alpha.4.tgz#42ae09b877b3198b5092ec9cfa873ace5d553530"
-  integrity sha512-Fx29GfkaU/VOPvSurHY0wOqx+QPFSIUN2g9CUWPZPWGCXSVy8zK+Sp+2Ml+qFa5sdl8CodMHEt2TTCWE7c7qkw==
+"@semapps/auth-provider@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/auth-provider/-/auth-provider-0.4.0-alpha.5.tgz#7218b1119d1b7652fe806aca860eb5cc5cda62f4"
+  integrity sha512-cWIvwE39JyxNiZ9LXojLxPDqi79/xZqp4+pIcFhOReH4Dry13v5EbIL2wP/I9m+P6y0Je/UtyY2AJ3Cq87IFlg==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.57"
-    "@semapps/archipelago-layout" "0.4.0-alpha.4"
-    "@semapps/semantic-data-provider" "0.4.0-alpha.4"
+    "@semapps/archipelago-layout" "0.4.0-alpha.5"
+    "@semapps/semantic-data-provider" "0.4.0-alpha.5"
     jwt-decode "^3.0.0"
     url-join "^4.0.1"
 
-"@semapps/date-components@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/date-components/-/date-components-0.4.0-alpha.4.tgz#f1df1d1270658a15a217878756a014bad00f5cb5"
-  integrity sha512-rqNlCojp8cv+KO8Y9piFjz2y2PFFqz0LQv9NdD6one/Geulnr+1/M+OdAP3dstVpQSbkRm61O4p2LepTYoOIYQ==
+"@semapps/date-components@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/date-components/-/date-components-0.4.0-alpha.5.tgz#fe4cdd0aa849047a20d96ce3a9f9de571b6b5d72"
+  integrity sha512-aXwx5TxCWMlsAfNZ2JqWW6BNuNwCYG2cQGlM0j3IHBdbOnoZDIActPS+ZEz4s/ivHPtQOiL6NIS2TrSAYnh98Q==
   dependencies:
     "@date-io/core" "^1.3.6"
     "@date-io/date-fns" "^1.3.13"
@@ -1674,10 +1674,10 @@
     "@material-ui/pickers" "^3.2.10"
     date-fns "~2.8.1"
 
-"@semapps/geo-components@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/geo-components/-/geo-components-0.4.0-alpha.4.tgz#0c8f641eeebc7a6df0715027b5c95e2551dd62b6"
-  integrity sha512-J23cMJwMRMd+D+M/SyzuFWL7iErMpdaIb8MhlM2nZY/5eNzj0guILpXjM4Hoci6Vad9T/7bKbZ2g6/bnLQS2BQ==
+"@semapps/geo-components@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/geo-components/-/geo-components-0.4.0-alpha.5.tgz#379d9be1bea129ecab06f00f93edd115b849df54"
+  integrity sha512-4I3HeiRKGVSsse3eBDCbauxYXSSKw3HQzGJxnj5VbrpQBjaXw8qyCe0STaiKNd6g/3M4JXJPp7/+kNyOrqogNw==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.57"
     autosuggest-highlight "^3.1.1"
@@ -1685,19 +1685,19 @@
     react-leaflet "^3.1.0"
     react-leaflet-markercluster "^3.0.0-rc1"
 
-"@semapps/markdown-components@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/markdown-components/-/markdown-components-0.4.0-alpha.4.tgz#d4cad3a2a703b438ca1ce8177158116b50c7818d"
-  integrity sha512-K9kvdafRd+Gme6nhXCxHcdu6WvmDo8Z8R44MW39/V67lat7fdKHm4y57bGS07uBzVMDI0WkfoPiUU26BM7xmww==
+"@semapps/markdown-components@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/markdown-components/-/markdown-components-0.4.0-alpha.5.tgz#95b26547ce5dc64e4e116979d6cfcaa175ffd7ab"
+  integrity sha512-fx6EJnGxrAOjRs1oW20i5ugPPjKuuOivYO/ryEJG0KjdcZI0UOF3FvnYehRp1yGmgC4PrH5LOb1BWeRRjymNcA==
   dependencies:
-    "@semapps/archipelago-layout" "0.4.0-alpha.4"
+    "@semapps/archipelago-layout" "0.4.0-alpha.5"
     markdown-to-jsx "^7.1.3"
     react-mde "^11.5.0"
 
-"@semapps/semantic-data-provider@0.4.0-alpha.4":
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@semapps/semantic-data-provider/-/semantic-data-provider-0.4.0-alpha.4.tgz#5e64c731d3ec778ffc1d7d00febe66b10f8aea4c"
-  integrity sha512-gb9lN3ij7yQ5WEr7L1wpqttxS8Y5SyvA0j9JCjzhs+8Un6pe7OOBnrOKHI2TjWQuDH+NKtA9ROoJYjUvFM1reA==
+"@semapps/semantic-data-provider@0.4.0-alpha.5":
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@semapps/semantic-data-provider/-/semantic-data-provider-0.4.0-alpha.5.tgz#d56029d45516fef4370299835388af23b63c2a27"
+  integrity sha512-nGSNZGd23nv6JRimq2a9Ra6bvtO9QbVP1CQ9xYZFavtOpSMkWK1CFp4FX6e9oayhLI9WzxkIfSbjqOE/2HNjKw==
   dependencies:
     jsonld "^5.2.0"
     jwt-decode "^3.0.0"
