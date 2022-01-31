@@ -8,7 +8,8 @@ import {
   TextField,
   SelectInput,
   FilterLiveSearch,
-  FilterList
+  FilterList,
+  FilterListItem
 } from 'react-admin';
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +42,7 @@ const OrganizationFilterSidebar = () => {
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
+
         <ReferenceFilter
           label="Thématiques"
           reference="Branch"
@@ -57,6 +59,15 @@ const OrganizationFilterSidebar = () => {
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
+        <FilterList
+            label="statut"
+            source="aurba:externalDeleted"
+        >
+            <FilterListItem
+                label="supprimé à la source"
+                value={{"aurba:externalDeleted":"true"}}
+            />
+        </FilterList>
       </CardContent>
     </Card>
   );

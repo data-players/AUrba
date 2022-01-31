@@ -52,7 +52,6 @@ const OrganizationList = props => {
         icon: ListIcon,
         sort: { field: 'pair:label', order: 'DESC' },
         perPage: 50,
-        filters: (<filters />),
         list: (
           <Datagrid>
               <TextField source="pair:label" />

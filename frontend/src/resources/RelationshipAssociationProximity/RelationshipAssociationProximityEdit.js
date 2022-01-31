@@ -3,7 +3,7 @@ import { Edit } from "@semapps/archipelago-layout";
 import { SimpleForm, TextInput,BooleanInput ,useEditController} from "react-admin";
 import RelationshipAssociationProximityTitle from './RelationshipAssociationProximityTitle';
 import MarkdownInput from '../../markdown/MarkdownInput';
-import TooBarSaveOnly from '../../components/ToolBarSaveOnly'
+import ToolBarCustom from '../../components/ToolBarCustom'
 
 export const RelationshipAssociationProximityEdit = props => {
   const {
@@ -12,7 +12,7 @@ export const RelationshipAssociationProximityEdit = props => {
   const lock = record?.['aurba:deleteEdit'];
   return (
       <Edit title={<RelationshipAssociationProximityTitle />} {...props} >
-          <SimpleForm redirect="show" toolbar={lock?<TooBarSaveOnly/>:undefined}>
+          <SimpleForm redirect="show" toolbar={<ToolBarCustom deleteable={!lock}/>}>
               <TextInput source="pair:label" fullWidth />
               <MarkdownInput multiline source="pair:description" fullWidth />
               <BooleanInput source="aurba:deleteEdit" fullWidth />

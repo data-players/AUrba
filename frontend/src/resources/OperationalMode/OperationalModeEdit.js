@@ -4,7 +4,7 @@ import { SimpleForm } from "ra-ui-materialui";
 import OperationalModeTitle from './OperationalModeTitle';
 import MarkdownInput from '../../markdown/MarkdownInput'
 import MarkdownField from "../../markdown/MarkdownField";
-import TooBarSaveOnly from '../../components/ToolBarSaveOnly'
+import ToolBarCustom from '../../components/ToolBarCustom'
 import {
   ReferenceInput,
   SelectInput,
@@ -22,7 +22,7 @@ export const OperationalModeEdit = props => {
   const lock = record?.['aurba:deleteEdit'];
   return (
       <Edit title={<OperationalModeTitle />} {...props} >
-        <SimpleForm redirect="show" toolbar={lock?<TooBarSaveOnly/>:undefined}>
+        <SimpleForm redirect="show" toolbar={<ToolBarCustom deleteable={!lock}/>}>
             <TextInput source="pair:label" fullWidth />
             <MarkdownInput multiline source="pair:description" fullWidth />
             <BooleanInput source="aurba:deleteEdit" fullWidth />

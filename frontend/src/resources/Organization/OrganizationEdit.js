@@ -7,31 +7,28 @@ import OrganizationTitle from './OrganizationTitle';
 import { MarkdownInput } from '@semapps/markdown-components';
 import { extractContext, LocationInput } from '@semapps/geo-components';
 import  PairLocationInput from '../../components/PairLocationInput';
-import TooBarSaveOnly from '../../components/ToolBarSaveOnly'
+import ToolBarCustom from '../../components/ToolBarCustom'
 
 import {
   SelectInput,
   AutocompleteInput,
   useEditController,
   TextField,
-  AutocompleteArrayInput
+  AutocompleteArrayInput,
+  BooleanInput
 } from 'react-admin';
 
-
-const UserEditToolbar = props => (
-    <Toolbar {...props} >
-        <SaveButton />
-    </Toolbar>
-);
 
 export const OrganizationEdit = props => {
   const {
       record, // record fetched via dataProvider.getOne() based on the id from the location
   } = useEditController(props);
   const lock = record?.['aurba:externalSource']!=undefined;
+  const deleteable = !lock || record?.['aurba:externalDeleted']!=undefined;
+  console.log('record',deleteable,record);
   return (
     <Edit title={<OrganizationTitle />} {...props} >
-        <SimpleForm redirect="show" toolbar={lock?<TooBarSaveOnly/>:undefined}>
+        <SimpleForm redirect="show" toolbar={<ToolBarCustom deleteable={deleteable}/>}>
 
             <TextInput source="pair:label" fullWidth disabled={lock} />
 
@@ -40,7 +37,9 @@ export const OrganizationEdit = props => {
             <TextInput source="pair:hasLocation.pair:longitude" fullWidth disabled={true} />
             <TextInput source="pair:hasLocation.pair:latitude" fullWidth disabled={true} />
             <TextInput source="aurba:perimeter" fullWidth/>
-            <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
+            {lock &&
+              <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
+            }
             <ReferenceArrayInput reference="Branch" fullWidth source="pair:hasBranch">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock} disableRemove={lock}/>
             </ReferenceArrayInput>
@@ -56,6 +55,9 @@ export const OrganizationEdit = props => {
             <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource">
               <SelectInput optionText="pair:label" disabled={lock}/>
             </ReferenceInput>
+            {lock &&
+              <BooleanInput source="aurba:externalDeleted" disabled={true} />
+            }
 
             {/**
               <ReificationArrayInput source="aurba:organizationOfRelationshipFrom" reificationClass="aurba:RelationshipAssociation">

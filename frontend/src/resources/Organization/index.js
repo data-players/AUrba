@@ -39,8 +39,9 @@ export default {
             'aurba:hasDataSource' : 'source de données',
             'pair:hasLocation.pair:longitude' :'longitude',
             'pair:hasLocation.pair:latitude' :'latitude',
-            'aurba:perimeter' :'périmetre',
-            'aurba:hasOperationalModes' :`mode d'action`
+            'aurba:perimeter' :'rayon en km',
+            'aurba:hasOperationalModes' :`mode d'action`,
+            'aurba:externalDeleted':`suppression à la source`
           }
         }
       }
