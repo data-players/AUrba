@@ -37,9 +37,7 @@ export const OrganizationEdit = props => {
             <TextInput source="pair:hasLocation.pair:longitude" fullWidth disabled={true} />
             <TextInput source="pair:hasLocation.pair:latitude" fullWidth disabled={true} />
             <TextInput source="aurba:perimeter" fullWidth/>
-            {lock &&
-              <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
-            }
+            <TextInput source="aurba:externalUrl" fullWidth disabled={lock}/>
             <ReferenceArrayInput reference="Branch" fullWidth source="pair:hasBranch">
               <AutocompleteArrayInput optionText="pair:label" shouldRenderSuggestions={value => value.length > 1} disabled={lock} disableRemove={lock}/>
             </ReferenceArrayInput>
