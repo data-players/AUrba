@@ -26,16 +26,18 @@ module.exports = {
       };
     }
   },
-  started() {
-    this.broker.call('api.addRoute', { route: 
-      {
-        path: "/api",
-        aliases: {
-          "healthcheck":"healthcheck.getData"
-        }
-      }
-    });
-  }     
+    started() {
+        this.broker.waitForServices(["api"]).then(() => {
+            this.broker.call('api.addRoute', { route: 
+                {
+                    path: "/api",
+                    aliases: {
+                    "healthcheck":"healthcheck.getData"
+                    }
+                }
+            });       
+        });
+    }     
 }
 
 const dir = '../localData'
