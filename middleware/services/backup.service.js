@@ -3,7 +3,6 @@ const BackupService = require('@semapps/backup');
 const fs = require('fs');
 let Client = require('ssh2-sftp-client');
 require('dotenv-flow').config();
-// const CONFIG = require('../config');
 
 console.log('fuseki-backup path',path.resolve(__dirname, '../fuseki-backups'));
 
@@ -17,7 +16,7 @@ module.exports = {
       }
     },
     cronJob: {
-      time: '0 20 * * *',
+      time: '0 4 * * *',
       timeZone: 'Europe/Paris'
     }
   },
@@ -28,13 +27,14 @@ module.exports = {
           let sftp = new Client();
 
           await sftp.connect({
+            user: process.env.SEMAPPS_FTP_USER,
+            password: process.env.SEMAPPS_FTP_PASSWORD,
             host: process.env.SEMAPPS_FTP_HOST,
+            path: process.env.SEMAPPS_FTP_PATH,
             port: process.env.SEMAPPS_FTP_PORT,
-            username: process.env.SEMAPPS_FTP_USER,
-            password: process.env.SEMAPPS_FTP_PASSWORD
           });
 
-          fs.readdir(ctx.params.path, async function (err, files) {
+          fs.readdir("/app/fuseki-backups", async function (err, files) {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
                 reject('Unable to scan directory: ' + err.message)
@@ -43,12 +43,12 @@ module.exports = {
             files = files.map(function (fileName) {
               return {
                 name: fileName,
-                diff: (now - fs.statSync(ctx.params.path + '/' + fileName).mtime) / 1000
+                diff: (now - fs.statSync("/app/fuseki-backups" + '/' + fileName).mtime) / 1000
               };
             }).filter(f=>f.diff<60)
 
             for (var file of files) {
-              await sftp.put(ctx.params.path + '/' +file.name, process.env.SEMAPPS_FTP_PATH +file.name);
+              await sftp.put("/app/fuseki-backups" + '/' +file, "/backups/prats/backup/" +file);
             }
 
             resolve()
@@ -60,3 +60,5 @@ module.exports = {
     }
   }
 };
+
+// call backup.syncWithRemoteServer
