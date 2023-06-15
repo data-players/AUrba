@@ -53,6 +53,9 @@ export const OrganizationEdit = props => {
             <ReferenceInput reference="DataSource" fullWidth source="aurba:hasDataSource">
               <SelectInput optionText="pair:label" disabled={lock}/>
             </ReferenceInput>
+            <ReferenceInput reference="PublicationStatus" fullWidth source="aurba:hasPublicationStatus">
+              <SelectInput optionText="pair:label"/>
+            </ReferenceInput>
             {lock &&
               <BooleanInput source="aurba:externalDeleted" disabled={true} />
             }

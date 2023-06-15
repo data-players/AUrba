@@ -43,6 +43,12 @@ const dataProvider = semanticDataProvider({
             'aurba:DataSource': [
               '/data-sources'
             ],
+            'aurba:PublicationStatus': [
+              '/publication-status'
+            ],
+            'aurba:DataSource': [
+              '/data-sources'
+            ],
             'semapps:Page': [
               '/pages'
             ]

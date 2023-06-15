@@ -32,25 +32,33 @@ const AuthSSOMixin = {
         newUser = false;
 
         // TODO update account with recent information
-        // await this.broker.call('webid.edit', profileData, { meta: { webId } });
+        // await ctx.call('webid.edit', profileData, { meta: { webId } });
 
-        await this.broker.emit('auth.connected', { webId, accountData });
+        ctx.emit('auth.connected', { webId, accountData, ssoData }, { meta: { webId: null, dataset: null } });
       } else {
         if (!this.settings.registrationAllowed) {
           throw new Error('registration.not-allowed');
         }
 
-        accountData = await ctx.call('auth.account.create', { uuid: profileData.uuid, email: profileData.email });
-        webId = await ctx.call('webid.create', { nick: accountData.username, ...profileData });
+        accountData = await ctx.call('auth.account.create', {
+          uuid: profileData.uuid,
+          email: profileData.email,
+          username: profileData.username
+        });
+        webId = await ctx.call('webid.create', this.pickWebIdData({ nick: accountData.username, ...profileData }));
         newUser = true;
 
         // Link the webId with the account
         await ctx.call('auth.account.attachWebId', { accountUri: accountData['@id'], webId });
 
-        ctx.emit('auth.registered', { webId, profileData, accountData }, { meta: { webId: null, dataset: null } });
+        ctx.emit(
+          'auth.registered',
+          { webId, profileData, accountData, ssoData },
+          { meta: { webId: null, dataset: null } }
+        );
       }
 
-      const token = await ctx.call('auth.jwt.generateToken', { payload: { webId: accountData.webId } });
+      const token = await ctx.call('auth.jwt.generateToken', { payload: { webId } });
 
       return { token, newUser };
     }
@@ -61,6 +69,7 @@ const AuthSSOMixin = {
       return [
         {
           path: '/auth',
+          name: 'auth',
           use: [sessionMiddleware, this.passport.initialize(), this.passport.session()],
           aliases: {
             'GET /': [saveRedirectUrl, this.passport.authenticate(this.passportId, { session: false }), redirectToFront]
@@ -68,6 +77,7 @@ const AuthSSOMixin = {
         },
         {
           path: '/auth/logout',
+          name: 'auth-logout',
           use: [sessionMiddleware, this.passport.initialize(), this.passport.session()],
           aliases: {
             'GET /': [saveRedirectUrl, localLogout, redirectToFront]

@@ -1,3 +1,5 @@
+const { ACTOR_TYPES } = require("@semapps/activitypub");
+
 module.exports = [
   {
     path: '/organizations',
@@ -37,8 +39,25 @@ module.exports = [
     acceptedTypes: ['aurba:DataSource'],
   },
   {
-    path: '/pages',
-    acceptedTypes: ['semapps:Page']
+    path: '/publication-status',
+    acceptedTypes: ['aurba:PublicationStatus'],
   },
-  '/files'
+  {
+    path: '/pages',
+    acceptedTypes: ['semapps:Page'],
+    preferredView: '/Page',
+  },
+  '/files',
+  {
+    path: '/bots',
+    acceptedTypes: [ACTOR_TYPES.APPLICATION],
+    dereference: ['sec:publicKey'],
+    excludeFromMirror: true
+  },
+  {
+    path: '/users',
+    preferredView: '/Person',
+    acceptedTypes: ['pair:Person'],
+    dereference: ['sec:publicKey', 'pair:hasLocation/pair:hasPostalAddress']
+  },
 ];

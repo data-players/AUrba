@@ -5,12 +5,14 @@ module.exports = {
   settings: {
     path: null,
     acceptedTypes: null,
-    accept: null,
+    accept: MIME_TYPES.JSON,
     jsonContext: null,
     dereference: null,
     permissions: null,
     newResourcesPermissions: null,
-    controlledActions: {}
+    controlledActions: {},
+    readOnly: false,
+    excludeFromMirror: false
   },
   dependencies: ['ldp'],
   async started() {
@@ -18,10 +20,11 @@ module.exports = {
       path: this.settings.path,
       name: this.name,
       acceptedTypes: this.settings.acceptedTypes,
-      accept: MIME_TYPES.JSON || this.settings.accept,
+      accept: this.settings.accept,
       jsonContext: this.settings.jsonContext,
       dereference: this.settings.dereference,
       permissions: this.settings.permissions,
+      excludeFromMirror: this.settings.excludeFromMirror,
       newResourcesPermissions: this.settings.newResourcesPermissions,
       controlledActions: {
         post: this.name + '.post',
@@ -32,14 +35,21 @@ module.exports = {
         put: this.name + '.put',
         delete: this.name + '.delete',
         ...this.settings.controlledActions
-      }
+      },
+      readOnly: this.settings.readOnly
     });
   },
   actions: {
-    post(ctx) {
-      return ctx.call('ldp.container.post', ctx.params);
+    async post(ctx) {
+      if (!ctx.params.containerUri) {
+        ctx.params.containerUri = await this.actions.getContainerUri({ webId: ctx.params.webId }, { parentCtx: ctx });
+      }
+      return await ctx.call('ldp.container.post', ctx.params);
     },
-    list(ctx) {
+    async list(ctx) {
+      if (!ctx.params.containerUri) {
+        ctx.params.containerUri = await this.actions.getContainerUri({ webId: ctx.params.webId }, { parentCtx: ctx });
+      }
       return ctx.call('ldp.container.get', ctx.params);
     },
     get(ctx) {
@@ -56,12 +66,12 @@ module.exports = {
     },
     delete(ctx) {
       return ctx.call('ldp.resource.delete', ctx.params);
+    },
+    getContainerUri(ctx) {
+      return ctx.call('ldp.registry.getUri', { path: this.settings.path, webId: ctx.params.webId || ctx.meta.webId });
     }
   },
   methods: {
-    async getContainerUri(webId) {
-      return this.broker.call('ldp.registry.getUri', { path: this.settings.path, webId });
-    },
     async waitForContainerCreation(containerUri) {
       let containerExist, containerAttached;
 

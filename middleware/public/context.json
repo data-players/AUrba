@@ -38,6 +38,9 @@
     "aurba:relationshipAssociationProximityKind": {
       "@type": "@id"
     },
+    "aurba:hasPublicationStatus": {
+      "@type": "@id"
+    },
     "aurba:hasDataSource": {
       "@type": "@id"
     },

@@ -1,5 +1,6 @@
 const { MoleculerError } = require('moleculer').Errors;
 const { MIME_TYPES } = require('@semapps/mime-types');
+const { isMirror } = require('../../../utils');
 
 module.exports = {
   visibility: 'public',
@@ -18,12 +19,14 @@ module.exports = {
     }
   },
   async handler(ctx) {
-    let { resource, contentType } = ctx.params;
+    let { resource, contentType, body } = ctx.params;
     const webId = ctx.params.webId || ctx.meta.webId || 'anon';
 
     const resourceUri = resource.id || resource['@id'];
 
-    const { disassembly, jsonContext } = {
+    const mirror = isMirror(resourceUri, this.settings.baseUrl);
+
+    const { disassembly, jsonContext, controlledActions } = {
       ...(await ctx.call('ldp.registry.getByUri', { resourceUri })),
       ...ctx.params
     };
@@ -34,7 +37,7 @@ module.exports = {
     }
 
     // Adds the default context, if it is missing
-    if (contentType === MIME_TYPES.JSON && !resource['@context']) {
+    if (jsonContext && contentType === MIME_TYPES.JSON && !resource['@context']) {
       resource = {
         '@context': jsonContext,
         ...resource
@@ -45,34 +48,56 @@ module.exports = {
       await this.createDisassembly(ctx, disassembly, resource);
     }
 
-    await ctx.call('triplestore.insert', {
-      resource,
-      contentType,
+    if (contentType !== MIME_TYPES.JSON && !resource.body)
+      throw new MoleculerError('The resource must contain a body member (a string)', 400, 'BAD_REQUEST');
+
+    let newTriples = await this.bodyToTriples(body || resource, contentType);
+    // see PUT
+    newTriples = this.filterOtherNamedNodes(newTriples, resourceUri);
+    // see PUT
+    newTriples = this.convertBlankNodesToVars(newTriples);
+    // see PUT
+    newTriples = this.removeDuplicatedVariables(newTriples);
+
+    const triplesToAdd = newTriples.reverse();
+
+    const newBlankNodes = newTriples.filter(triple => triple.object.termType === 'Variable');
+
+    // Generate the query
+    let query = '';
+    if (triplesToAdd.length > 0) query += `INSERT { ${this.triplesToString(triplesToAdd)} } `;
+    query += 'WHERE { ';
+    if (newBlankNodes.length > 0) query += this.bindNewBlankNodes(newBlankNodes);
+    query += ` }`;
+
+    this.logger.info('POST query', query);
+
+    await ctx.call('triplestore.update', {
+      query,
       webId
     });
 
     const newData = await ctx.call(
-      'ldp.resource.get',
+      (controlledActions && controlledActions.get) || 'ldp.resource.get',
       {
         resourceUri,
         accept: MIME_TYPES.JSON,
-        queryDepth: 1,
         forceSemantic: true,
         webId
       },
       { meta: { $cache: false } }
     );
 
-    ctx.emit(
-      'ldp.resource.created',
-      {
-        resourceUri: resource['@id'],
-        newData,
-        webId
-      },
-      { meta: { webId: null, dataset: null } }
-    );
+    const returnValues = {
+      resourceUri,
+      newData,
+      webId
+    };
 
-    return newData;
+    if (!mirror) {
+      ctx.emit('ldp.resource.created', returnValues, { meta: { webId: null, dataset: null } });
+    }
+
+    return returnValues;
   }
 };

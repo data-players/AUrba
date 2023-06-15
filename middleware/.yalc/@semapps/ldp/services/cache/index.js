@@ -62,7 +62,17 @@ module.exports = {
       await this.actions.invalidateResource({ resourceUri }, { parentCtx: ctx });
       await this.actions.invalidateContainer({ containerUri }, { parentCtx: ctx });
     },
+    async 'ldp.resource.patched'(ctx) {
+      const { resourceUri } = ctx.params;
+      const containerUri = getContainerFromUri(resourceUri);
+      await this.actions.invalidateResource({ resourceUri }, { parentCtx: ctx });
+      await this.actions.invalidateContainer({ containerUri }, { parentCtx: ctx });
+    },
     async 'ldp.container.attached'(ctx) {
+      const { containerUri } = ctx.params;
+      await this.actions.invalidateContainer({ containerUri }, { parentCtx: ctx });
+    },
+    async 'ldp.container.patched'(ctx) {
       const { containerUri } = ctx.params;
       await this.actions.invalidateContainer({ containerUri }, { parentCtx: ctx });
     },

@@ -27,9 +27,13 @@ services:
       - SEMAPPS_MAIN_DATASET=localData
       - SEMAPPS_JENA_USER=admin
       - SEMAPPS_JENA_PASSWORD=admin
+      - SEMAPPS_INSTANCE_NAME="AUrba"
+      - SEMAPPS_FRONT_URL="http://localhost:5000/"
       - SEMAPPS_HOME_URL=http://localhost:3000/
       - SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH=/app/fuseki-backups
       - SEMAPPS_REDIS_URL=redis://redis:6379/0
+      - SEMAPPS_OIDC_ISSUER=https://login.lescommuns.org/auth/realms/master/
+      - SEMAPPS_OIDC_CLIENT_ID=semapps
     ports:
       - "3000:3000"
     expose:
@@ -71,4 +75,5 @@ services:
 
 networks:
   semapps:
-    name: semapps_network
+    name: bus_network
+    external: true
