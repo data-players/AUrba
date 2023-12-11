@@ -28,7 +28,12 @@ services:
       - SEMAPPS_JENA_USER=admin
       - SEMAPPS_JENA_PASSWORD=admin
       - SEMAPPS_HOME_URL=http://localhost:3000/
-      - SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH=/app/fuseki-backups
+      - SEMAPPS_BACKUP_SERVER_USER=backup
+      - SEMAPPS_BACKUP_SERVER_PASSWORD=b4ckup8462
+      - SEMAPPS_BACKUP_SERVER_HOST=ftp-ftpgo.data-players.com
+      - SEMAPPS_BACKUP_SERVER_PORT=2022
+      - SEMAPPS_BACKUP_SERVER_PATH=/backups/Aurba
+      - SEMAPPS_BACKUP_FUSEKI_DATASETS_PATH=/app/fuseki-backups/      
       - SEMAPPS_REDIS_URL=redis://redis:6379/0
     ports:
       - "3000:3000"
