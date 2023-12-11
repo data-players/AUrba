@@ -38,7 +38,6 @@ const OrganizationFilterSidebar = () => {
           label="Source de données"
           reference="DataSource"
           source="aurba:hasDataSource"
-          inverseSource="aurba:dataSourceOf"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
@@ -47,7 +46,6 @@ const OrganizationFilterSidebar = () => {
           label="Thématiques"
           reference="Branch"
           source="pair:hasBranch"
-          inverseSource="pair:branchOf"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
@@ -55,11 +53,17 @@ const OrganizationFilterSidebar = () => {
           label="Mode d'action"
           reference="OperationalMode"
           source="aurba:hasOperationalModes"
-          inverseSource="aurba:operationalModesOf"
           sort={{ field: 'pair:label', order: 'DESC' }}
           limit={100}
         />
-        <FilterList
+        <ReferenceFilter
+          label="statut de publication"
+          reference="PublicationStatus"
+          source="aurba:hasPublicationStatus"
+          sort={{ field: 'pair:label', order: 'DESC' }}
+          limit={100}
+        />
+        {/* <FilterList
             label="statut"
             source="aurba:externalDeleted"
         >
@@ -67,7 +71,7 @@ const OrganizationFilterSidebar = () => {
                 label="supprimé à la source"
                 value={{"aurba:externalDeleted":"true"}}
             />
-        </FilterList>
+        </FilterList> */}
       </CardContent>
     </Card>
   );

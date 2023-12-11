@@ -2,8 +2,28 @@ const urlJoin = require('url-join');
 const crypto = require('crypto');
 
 function getAclUriFromResourceUri(baseUrl, resourceUri) {
-  return urlJoin(baseUrl, resourceUri.replace(baseUrl, '_acl/'));
+  return urlJoin(baseUrl, resourceUri.replace(baseUrl, baseUrl.endsWith('/') ? '_acl/' : '_acl'));
 }
+
+const regexPrefix = new RegExp('^@prefix ([\\w-]*: +<.*>) .', 'gm');
+
+const regexProtocolAndHostAndPort = new RegExp('^http(s)?:\\/\\/([\\w-\\.:]*)');
+
+function createFragmentURL(baseUrl, serverUrl) {
+  let fragment = 'me';
+  const res = serverUrl.match(regexProtocolAndHostAndPort);
+  if (res)
+    fragment = res[2]
+      .replace('-', '_')
+      .replace('.', '_')
+      .replace(':', '_');
+
+  return urlJoin(baseUrl, '#' + fragment);
+}
+
+const isMirror = (resourceUri, baseUrl) => {
+  return !urlJoin(resourceUri, '/').startsWith(baseUrl);
+};
 
 const buildBlankNodesQuery = depth => {
   let construct = '',
@@ -71,7 +91,7 @@ const buildDereferenceQuery = predicates => {
   let queries = [];
   const nodes = extractNodes(predicates);
 
-  if (nodes) {
+  if (nodes && nodes.length) {
     for (let node of nodes) {
       const parentNode = getParentNode(node);
       const predicate = getPredicate(node);
@@ -128,6 +148,21 @@ const getPrefixJSON = ontologies => {
   return pattern;
 };
 
+// Replace a full URI with a prefix
+const usePrefix = (uri, ontologies) => {
+  if (!uri.startsWith('http')) return uri; // If it is already prefixed
+  const ontology = ontologies.find(o => uri.startsWith(o.url));
+  return uri.replace(ontology.url, ontology.prefix + ':');
+};
+
+// Replace a full URI with a prefix
+const useFullURI = (prefixedUri, ontologies) => {
+  if (prefixedUri.startsWith('http')) return uri; // If it is already a full URI
+  const [prefix] = prefixedUri.split(':');
+  const ontology = ontologies.find(o => o.prefix === prefix);
+  return prefixedUri.replace(ontology.prefix + ':', ontology.url);
+};
+
 const getSlugFromUri = str => str.match(new RegExp(`.*/(.*)`))[1];
 
 const getContainerFromUri = str => str.match(new RegExp(`(.*)/.*`))[1];
@@ -149,11 +184,17 @@ module.exports = {
   buildFiltersQuery,
   getPrefixRdf,
   getPrefixJSON,
+  usePrefix,
+  useFullURI,
   getSlugFromUri,
   getContainerFromUri,
   hasType,
   isContainer,
   defaultToArray,
   delay,
-  getAclUriFromResourceUri
+  getAclUriFromResourceUri,
+  isMirror,
+  createFragmentURL,
+  regexPrefix,
+  regexProtocolAndHostAndPort
 };

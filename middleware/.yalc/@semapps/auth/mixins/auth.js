@@ -1,7 +1,8 @@
+const passport = require('passport');
+const { Errors: E } = require('moleculer-web');
+const { TripleStoreAdapter } = require('@semapps/triplestore');
 const AuthAccountService = require('../services/account');
 const AuthJWTService = require('../services/jwt');
-const { Errors: E } = require('moleculer-web');
-const passport = require('passport');
 
 const AuthMixin = {
   settings: {
@@ -9,18 +10,21 @@ const AuthMixin = {
     jwtPath: null,
     registrationAllowed: true,
     reservedUsernames: [],
-    webIdSelection: []
+    webIdSelection: [],
+    accountSelection: [],
+    accountsDataset: 'settings'
   },
   dependencies: ['api', 'webid'],
   async created() {
-    const { jwtPath, reservedUsernames } = this.settings;
+    const { jwtPath, reservedUsernames, accountsDataset } = this.settings;
 
     await this.broker.createService(AuthJWTService, {
       settings: { jwtPath }
     });
 
     await this.broker.createService(AuthAccountService, {
-      settings: { reservedUsernames }
+      settings: { reservedUsernames },
+      adapter: new TripleStoreAdapter({ type: 'AuthAccount', dataset: accountsDataset })
     });
   },
   async started() {
@@ -34,7 +38,7 @@ const AuthMixin = {
       done(null, user);
     });
 
-    this.strategy = this.getStrategy();
+    this.strategy = await this.getStrategy();
 
     this.passport.use(this.passportId, this.strategy);
 
@@ -61,7 +65,7 @@ const AuthMixin = {
           return Promise.reject(new E.UnAuthorizedError(E.ERR_INVALID_TOKEN));
         }
       } else {
-        // No token, anonymous error
+        // No token
         ctx.meta.webId = 'anon';
         return Promise.resolve(null);
       }
@@ -107,6 +111,15 @@ const AuthMixin = {
         return Object.fromEntries(this.settings.webIdSelection.filter(key => key in data).map(key => [key, data[key]]));
       } else {
         return data;
+      }
+    },
+    pickAccountData(data) {
+      if (this.settings.accountSelection.length > 0) {
+        return Object.fromEntries(
+          this.settings.accountSelection.filter(key => key in data).map(key => [key, data[key]])
+        );
+      } else {
+        return data || {};
       }
     }
   }

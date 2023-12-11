@@ -12,8 +12,7 @@ module.exports = {
           containerUri,
           slug: ctx.meta.headers.slug,
           resource,
-          contentType: ctx.meta.headers['content-type'],
-          createResourceAction: controlledActions.create
+          contentType: ctx.meta.headers['content-type']
         });
       } else {
         if (ctx.params.files.length > 1) {
@@ -23,8 +22,7 @@ module.exports = {
           containerUri,
           slug: ctx.meta.headers.slug || ctx.params.files[0].filename,
           file: ctx.params.files[0],
-          contentType: MIME_TYPES.JSON,
-          createResourceAction: controlledActions.create
+          contentType: MIME_TYPES.JSON
         });
       }
       ctx.meta.$responseHeaders = {
@@ -67,14 +65,10 @@ module.exports = {
       disassembly: {
         type: 'array',
         optional: true
-      },
-      createResourceAction: {
-        type: 'string',
-        default: 'ldp.resource.create'
       }
     },
     async handler(ctx) {
-      let { resource, containerUri, slug, contentType, file, createResourceAction } = ctx.params;
+      let { resource, containerUri, slug, contentType, file } = ctx.params;
       const webId = ctx.params.webId || ctx.meta.webId || 'anon';
 
       const resourceUri = await ctx.call('ldp.resource.generateId', { containerUri, slug });
@@ -88,6 +82,9 @@ module.exports = {
         );
       }
 
+      // We must add this first, so that the container's ACLs are taken into account
+      // But this create race conditions, especially when testing, since uncreated resources are linked to containers
+      // TODO Add temporary ACLs to the resource so that it can be created, then link it to the container ?
       await ctx.call('triplestore.insert', {
         resource: `<${containerUri}> <http://www.w3.org/ns/ldp#contains> <${resourceUri}>`,
         webId
@@ -98,7 +95,9 @@ module.exports = {
           resource = await ctx.call('ldp.resource.upload', { resourceUri, file });
         }
 
-        await ctx.call(createResourceAction, {
+        const { controlledActions } = await ctx.call('ldp.registry.getByUri', { containerUri });
+
+        await ctx.call(controlledActions.create || 'ldp.resource.create', {
           resource: {
             '@id': resourceUri,
             ...resource
@@ -121,7 +120,8 @@ module.exports = {
         'ldp.container.attached',
         {
           containerUri,
-          resourceUri
+          resourceUri,
+          fromContainerPost: true
         },
         { meta: { webId: null, dataset: null } }
       );
